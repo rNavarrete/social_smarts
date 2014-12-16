@@ -42,6 +42,7 @@ gem 'twitter'
 
 group :test do
   gem 'rspec-rails'
+  gem 'capybara'
   gem "codeclimate-test-reporter", require: nil
 end
 
