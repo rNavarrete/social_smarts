@@ -1,0 +1,7 @@
+language: ruby
+rvm:
+    - 2.1.5
+env:
+    - DB=postgresql
+before_script:
+    - psql -c 'create database social_smarts_test' -U postgres
