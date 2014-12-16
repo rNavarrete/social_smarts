@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 
 group :test do
   gem 'rspec-rails'
+  gem "codeclimate-test-reporter", require: nil
 end
 
 group :production do
