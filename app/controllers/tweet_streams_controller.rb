@@ -3,7 +3,7 @@ class TweetStreamsController < ApplicationController
   end
 
   def create
-     @tweets = twitter_client.fetch_tweets(params[:twitter_handle])
+    @tweets = twitter_client.fetch_tweets(params[:twitter_handle])
   end
 
   def twitter_client
