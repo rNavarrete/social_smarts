@@ -42,3 +42,8 @@ group :test do
   gem 'rspec-rails'
 end
 
+group :production do
+  gem 'execjs'
+  gem 'therubyracer'
+end
+
