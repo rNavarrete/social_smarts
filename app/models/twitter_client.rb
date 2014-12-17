@@ -9,8 +9,8 @@ class TwitterClient
     twitter_client.user_timeline(username)
   end
 
-  # def fetch_mentions(username)
-  #   twitter_client.mentions_timeline(username)
-  # end
+  def fetch_mentions
+    twitter_client.mentions_timeline
+  end
 
 end
