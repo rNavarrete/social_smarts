@@ -5,7 +5,12 @@ class TwitterClient
     @twitter_client = external_client
   end
 
-  def self.fetch_tweets(username)
+  def fetch_tweets(username)
     twitter_client.user_timeline(username)
   end
+
+  # def fetch_mentions(username)
+  #   twitter_client.mentions_timeline(username)
+  # end
+
 end
