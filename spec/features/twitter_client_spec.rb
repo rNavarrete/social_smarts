@@ -6,6 +6,7 @@ describe 'TwitterClient' do
   end
 
   context 'given a user that has tweets' do
+    WebMock.disable!
     it 'displays tweets' do
       VCR.use_cassette("j3_tweets") do
         visit root_path
