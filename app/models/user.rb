@@ -28,15 +28,25 @@ class User < ActiveRecord::Base
   #     user.save
   #   end
   # end
+  def client
+    Twitter::REST::Client.new do |config|
+    config.consumer_key        = ENV["twitter_consumer_key"]
+    config.consumer_secret     = ENV["twitter_api_secret_key"]
+    config.access_token        = oauth_token
+    config.access_token_secret = oauth_secret
+    end
+  end
 
   def tweet(tweet)
-    client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV["twitter_consumer_key"]
-      config.consumer_secret     = ENV["twitter_api_secret_key"]
-      config.access_token        = oauth_token
-      config.access_token_secret = oauth_secret
-    end
     client.update(tweet)
+  end
+
+  def fetch_tweets
+    client.user_timeline
+  end
+
+  def fetch_mentions
+    client.mentions_timeline
   end
 
 end

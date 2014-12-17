@@ -7,3 +7,25 @@
   <% end %>
   <% end%>
 </div>
+
+<h1>Tweets</h1>
+<% unless @tweets.empty? %>
+<ul class="tweets">
+  <% @tweets.each do |tweet| %>
+  <li class="tweet"><%= tweet.text %></li>
+  <% end %>
+</ul>
+<% else %>
+<h1>You have no tweets</h1>
+<% end %>
+
+<h1>Mentions</h1>
+<% unless @tweets.empty? %>
+<ul class="mentions">
+  <% @mentions.each do |mention| %>
+  <li class="mention"><%= mention.text %></li>
+  <% end %>
+</ul>
+<% else %>
+<h1>You have no mentions</h1>
+<% end %>
