@@ -5,9 +5,10 @@ class TwitterClientController < ApplicationController
     @mentions = twitter_client.fetch_mentions
   end
 
-  # def create
-  #   @tweets = twitter_client.fetch_tweets(params[:twitter_handle])
-  # end
+  def create
+    current_user.tweet(params[:tweet])
+    redirect_to root_path
+  end
 
   def twitter_client
     @twitter_client ||= TwitterClient.new
