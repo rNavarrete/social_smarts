@@ -4,13 +4,13 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
-require 'vcr'
+#require 'vcr'
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-  c.hook_into :webmock
-  c.default_cassette_options = { :serialize_with => :json }
-end
+# VCR.configure do |c|
+#   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+#   c.hook_into :webmock
+#   c.default_cassette_options = { :serialize_with => :json }
+# end
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

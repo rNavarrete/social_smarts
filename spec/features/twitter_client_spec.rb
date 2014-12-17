@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'HomePage' do
+describe 'TwitterClient' do
 
   context 'given a user has no tweets' do
   end

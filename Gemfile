@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'figaro'
 gem 'twitter'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -45,8 +47,6 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
   gem "codeclimate-test-reporter", require: nil
-  gem 'vcr'
-  gem 'webmock'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
@@ -54,4 +54,10 @@ end
 group :production do
   gem 'execjs'
   gem 'therubyracer'
+end
+
+group :test do
+  gem 'vcr'
+  gem 'webmock'
+  gem 'launchy'
 end
