@@ -40,14 +40,18 @@ gem 'twitter'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-group :test do
+group :test, :development do
+  gem 'pry'
   gem 'rspec-rails'
   gem 'capybara'
   gem "codeclimate-test-reporter", require: nil
+  gem 'vcr'
+  gem 'webmock'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :production do
   gem 'execjs'
   gem 'therubyracer'
 end
-
