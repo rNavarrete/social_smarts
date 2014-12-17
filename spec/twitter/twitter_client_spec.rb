@@ -22,12 +22,16 @@ describe TwitterClient do
   context 'mentions' do
     before do
       VCR.use_cassette("j3_mentions") do
-        @mentions = client.fetch_mentions("j3")
+        @mentions = client.fetch_mentions
       end
     end
 
-    xit 'fetches array of mentions' do
-      binding.pry
+    it 'fetches array of mentions' do
+      expect(@mentions).to be_a Array
+    end
+
+    it 'returns mention objects with text' do
+      expect(@mentions.first.text?).to eq true
     end
   end
 
