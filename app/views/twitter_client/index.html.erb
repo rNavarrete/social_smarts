@@ -1,3 +1,41 @@
+  <script>
+  $(document).ready(function(){
+    map = new GMaps({
+      div: '#map',
+      lat:  39.738436,
+      lng: -104.984859,
+      height: "400px",
+      width: "100%",
+      zoom: 12
+    });
+
+    GMaps.geocode({
+      address: "<%= @location %>",
+      callback: function(results, status) {
+        if (status == 'OK') {
+          var latlng = results[0].geometry.location;
+          map.setCenter(latlng.lat(), latlng.lng());
+          map.addMarker({
+            lat: latlng.lat(),
+            lng: latlng.lng()
+            });
+          }
+        }
+      });
+
+    var mentions = <%= @mentions_data %>;
+    for (var i = 0; i < mentions.length; i ++) {
+      map.addMarker({
+        lat: mentions[i][1],
+        lng: mentions[i][0],
+        // title: mentions[i].user_name,
+        // infoWindow: {
+        //   content: mentions[i].text
+        // }
+      });
+    }
+  })
+  </script>
 <div id="tweet_form">
   <% if current_user %>
   <%= form_tag(twitter_client_index_path) do %>
@@ -7,6 +45,12 @@
   <% end %>
   <% end%>
 </div>
+
+
+
+<div id="map"> </div>
+
+
 
 <h1>Tweets</h1>
 <% if @tweets %>
@@ -29,32 +73,3 @@
 <% else %>
 <h1>You have no mentions</h1>
 <% end %>
-
-
-  <script>
-  $(document).ready(function(){
-    map = new GMaps({
-      div: '#map',
-      lat:  39.738436,
-      lng: -104.984859,
-      height: "400px",
-      width: "200px",
-      zoom: 12
-    });
-
-    GMaps.geocode({
-      address: "<%= @location %>",
-      callback: function(results, status) {
-        if (status == 'OK') {
-          var latlng = results[0].geometry.location;
-          map.setCenter(latlng.lat(), latlng.lng());
-          map.addMarker({
-            lat: latlng.lat(),
-            lng: latlng.lng()
-          });
-        }
-      }
-    });
-  })
-  </script>
-<div id="map"> </div>

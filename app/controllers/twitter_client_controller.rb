@@ -7,6 +7,11 @@ class TwitterClientController < ApplicationController
       @tweets = current_user.fetch_tweets
       @mentions = current_user.fetch_mentions
       @location = current_user.location
+      @mentions_data = @mentions.map do |tweet|
+                                      if tweet.attrs[:place]
+                                          [tweet.attrs[:place][:bounding_box][:coordinates].flatten[1], tweet.attrs[:place][:bounding_box][:coordinates].flatten[0]]
+                                      end
+                                    end.compact
     end
   end
 
