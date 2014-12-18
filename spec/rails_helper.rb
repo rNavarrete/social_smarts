@@ -12,6 +12,15 @@ VCR.configure do |c|
   c.default_cassette_options = { :serialize_with => :json }
   c.ignore_hosts 'codeclimate.com'
 end
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+  'provider' => 'twitter',
+  'uid' => '1',
+  'info' => { "name" => 'Sara'},
+  'credentials' => {"token" => 'token', "secret" => 'secret' }
+})
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -27,7 +36,7 @@ end
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.

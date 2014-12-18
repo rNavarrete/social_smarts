@@ -1,14 +1,4 @@
 class User < ActiveRecord::Base
-
-  # def self.find_or_create_by_auth(auth_data)
-  #   user = User.where(provider: auth_data['provider'], uid: auth_data['uid']).first_or_create
-  #   if user.name != auth_data["info"]["name"]
-  #     user.name = auth_data["info"]["name"]
-  #     user.save
-  #   end
-  #   user
-  # end
-
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
@@ -19,15 +9,7 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
-
-  # def self.from_omniauth(auth)
-  #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-  #     user.provider = auth.provider
-  #     user.uid      = auth.uid
-  #     user.name     = auth.info.name
-  #     user.save
-  #   end
-  # end
+  
   def client
     Twitter::REST::Client.new do |config|
     config.consumer_key        = ENV["twitter_consumer_key"]
@@ -48,5 +30,4 @@ class User < ActiveRecord::Base
   def fetch_mentions
     client.mentions_timeline
   end
-
 end

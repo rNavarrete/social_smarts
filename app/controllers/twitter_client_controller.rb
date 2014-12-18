@@ -1,4 +1,6 @@
 class TwitterClientController < ApplicationController
+  respond_to :json
+  # before_filter :require_sigin!
 
   def index
     if current_user
@@ -10,9 +12,5 @@ class TwitterClientController < ApplicationController
   def create
     current_user.tweet(params[:tweet])
     redirect_to root_path
-  end
-
-  def twitter_client
-    @twitter_client ||= TwitterClient.new
   end
 end
