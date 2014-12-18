@@ -10,6 +10,7 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.hook_into :webmock
   c.default_cassette_options = { :serialize_with => :json }
+  c.ignore_hosts 'codeclimate.com'
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 

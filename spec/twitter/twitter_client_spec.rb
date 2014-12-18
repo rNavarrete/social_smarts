@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # require 'rails_helper'
 #
 # describe TwitterClient do

@@ -1,0 +1,76 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https:\/\/api.twitter.com\/1.1\/statuses\/mentions_timeline.json",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "Accept": [
+            "application\/json"
+          ],
+          "User-Agent": [
+            "TwitterRubyGem\/5.13.0"
+          ],
+          "Authorization": [
+            "OAuth oauth_consumer_key=\"eXl06RGtKNnEc8AYlMuKjpo66\", oauth_nonce=\"ad543e348ecbec7699104baa1d01e3c0\", oauth_signature=\"rCpBpzTvuyBtVVVG3L8peVnNjdA%3D\", oauth_signature_method=\"HMAC-SHA1\", oauth_timestamp=\"1418851176\", oauth_token=\"476319134-cYu8LHSOWdZqifmDdl5Kl8zuy8FRYqUKBdCDOzpW\", oauth_version=\"1.0\""
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 429,
+          "message": "Too Many Requests"
+        },
+        "headers": {
+          "Content-Length": [
+            "81"
+          ],
+          "Content-Type": [
+            "application\/json;charset=utf-8"
+          ],
+          "Date": [
+            "Wed, 17 Dec 2014 21:19:36 UTC"
+          ],
+          "Server": [
+            "tsa_a"
+          ],
+          "Set-Cookie": [
+            "guest_id=v1%3A141885117633799450; Domain=.twitter.com; Path=\/; Expires=Fri, 16-Dec-2016 21:19:36 UTC"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=631138519"
+          ],
+          "X-Connection-Hash": [
+            "9216076709785201c7f3520cdad503d4"
+          ],
+          "X-Rate-Limit-Limit": [
+            "15"
+          ],
+          "X-Rate-Limit-Remaining": [
+            "0"
+          ],
+          "X-Rate-Limit-Reset": [
+            "1418851654"
+          ],
+          "X-Response-Time": [
+            "6"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"message\":\"Rate limit exceeded\",\"code\":88}]}"
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 17 Dec 2014 21:19:37 GMT"
+    }
+  ],
+  "recorded_with": "VCR 2.9.3"
+}
