@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def location
-    client.location
+    client.settings.attrs[:trend_location][:name]
   end
 
 end
