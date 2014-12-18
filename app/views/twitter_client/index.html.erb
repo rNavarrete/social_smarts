@@ -29,3 +29,18 @@
 <% else %>
 <h1>You have no mentions</h1>
 <% end %>
+
+
+  <script>
+  $(document).ready(function(){
+    map = new GMaps({
+      div: '#map',
+      lat:  39.738436,
+      lng: -104.984859,
+      height: "400px",
+      width: "200px",
+      zoom: 12
+    });
+  })
+  </script>
+<div id="map"> </div>
