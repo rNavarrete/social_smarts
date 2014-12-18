@@ -1,5 +1,5 @@
 <div id="tweet_form">
-  <% unless !current_user %>
+  <% if current_user %>
   <%= form_tag(twitter_client_index_path) do %>
   <%= label_tag "Post Tweet" %>
   <%= text_field_tag("tweet")  %>
@@ -9,7 +9,7 @@
 </div>
 
 <h1>Tweets</h1>
-<% unless @tweets.empty? %>
+<% if @tweets %>
 <ul class="tweets">
   <% @tweets.each do |tweet| %>
   <li class="tweet"><%= tweet.text %></li>
@@ -20,7 +20,7 @@
 <% end %>
 
 <h1>Mentions</h1>
-<% unless @tweets.empty? %>
+<% if @tweets %>
 <ul class="mentions">
   <% @mentions.each do |mention| %>
   <li class="mention"><%= mention.text %></li>

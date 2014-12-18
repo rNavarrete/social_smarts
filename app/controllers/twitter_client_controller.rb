@@ -1,8 +1,10 @@
 class TwitterClientController < ApplicationController
 
   def index
-    @tweets = current_user.fetch_tweets
-    @mentions = current_user.fetch_mentions
+    if current_user
+      @tweets = current_user.fetch_tweets
+      @mentions = current_user.fetch_mentions
+    end
   end
 
   def create
