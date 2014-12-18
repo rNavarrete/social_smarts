@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
-  
+
   def client
     Twitter::REST::Client.new do |config|
     config.consumer_key        = ENV["twitter_consumer_key"]
@@ -30,4 +30,9 @@ class User < ActiveRecord::Base
   def fetch_mentions
     client.mentions_timeline
   end
+
+  def location
+    client.location
+  end
+
 end

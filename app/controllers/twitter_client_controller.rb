@@ -6,6 +6,8 @@ class TwitterClientController < ApplicationController
     if current_user
       @tweets = current_user.fetch_tweets
       @mentions = current_user.fetch_mentions
+      @location = current_user.location
+      binding.pry
     end
   end
 
