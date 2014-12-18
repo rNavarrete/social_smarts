@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   def self.from_omniauth(auth)
+    Rails.logger.info(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
-  
+
   def client
     Twitter::REST::Client.new do |config|
     config.consumer_key        = ENV["twitter_consumer_key"]
@@ -24,10 +25,10 @@ class User < ActiveRecord::Base
   end
 
   def fetch_tweets
-    client.user_timeline
+    @tweets ||= client.user_timeline.map {|t| Tweet.new(t) }
   end
 
   def fetch_mentions
-    client.mentions_timeline
+    @mentions ||= client.mentions_timeline.map { |t| Tweet.new(t) }
   end
 end
