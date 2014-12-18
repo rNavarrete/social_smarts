@@ -23,7 +23,11 @@
 <% if @tweets %>
 <ul class="mentions">
   <% @mentions.each do |mention| %>
-  <li class="mention"><%= mention.text %></li>
+  <li class="mention">
+    <p><b><%= mention.user.screen_name %></b> says: </p>
+    <p><%= mention.text %></p>
+    <p>their score is: <%= mention.user_klout_score %></p>
+  </li>
   <% end %>
 </ul>
 <% else %>
