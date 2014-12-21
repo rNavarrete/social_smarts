@@ -25,11 +25,11 @@ class User < ActiveRecord::Base
   end
 
   def fetch_tweets
-    client.user_timeline
+    @tweets ||= client.user_timeline.map {|t| Tweet.new(t) }
   end
 
   def fetch_mentions
-    client.mentions_timeline
+    @mentions ||= client.mentions_timeline.map { |t| Tweet.new(t) }
   end
 
   def update_auth_attrs(auth)
