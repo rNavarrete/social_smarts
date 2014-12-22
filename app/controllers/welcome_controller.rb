@@ -6,6 +6,6 @@ class WelcomeController < ApplicationController
   end
 
   def choose_layout
-    user_signed_in? ? "angular" : "application"
+    current_user ? "angular" : "application"
   end
 end
