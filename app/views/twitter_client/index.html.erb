@@ -19,15 +19,13 @@
         }
       });
 
-    var mentions = <%= @mentions_data %>;
+    var mentions = <%= @mentions_coordinates %>;
+    var mentions_text = <%= @mentions_text_attrs %>;
     for (var i = 0; i < mentions.length; i ++) {
       map.addMarker({
         lat: mentions[i][0],
         lng: mentions[i][1],
-        title: "Yo",
-        infoWindow: {
-          content: mentions[i].text
-        }
+        title: "dofu"
       });
     }
   })
