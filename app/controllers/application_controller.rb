@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  # def require_sigin!
-  #   render status: 401,
-  #         json: {
-  #           success: false,
-  #           info: "Unauthorized"
-  #         }
-  # end
+  def require_signin!
+    render status: 401,
+          json: {
+            success: false,
+            info: "Unauthorized"
+          } unless current_user
+  end
 end

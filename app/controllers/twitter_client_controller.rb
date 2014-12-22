@@ -1,15 +1,12 @@
 class TwitterClientController < ApplicationController
-  # respond_to :json, :html
-  # before_filter :require_sigin!
+  respond_to :json
+  before_filter :require_signin!
 
   def index
     if current_user
       @tweets = current_user.fetch_tweets
       @mentions = current_user.fetch_mentions
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: [@tweets, @mentions] }
-      end
+      respond_with [@tweets, @mentions]
     end
   end
 
