@@ -21,6 +21,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'hashie', "2.0.5"
 gem 'klout'
+gem 'angularjs-rails'
 
 group :test, :development do
   gem 'pry'
@@ -34,6 +35,7 @@ end
 group :production do
   gem 'execjs'
   gem 'therubyracer'
+  gem 'ngannotate-rails'
 end
 
 group :test do
