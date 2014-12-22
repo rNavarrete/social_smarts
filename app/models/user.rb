@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
                                             user.save!
                                           end
   end
-  
+
   def client
     Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["twitter_consumer_key"]
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def fetch_tweets
-    @tweets ||= client.user_timeline.map {|t| Tweet.new(t) }
+    @tweets ||= client.home_timeline.map {|t| Tweet.new(t) }
     # binding.pry
   end
 

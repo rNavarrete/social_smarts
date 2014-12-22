@@ -1,40 +1,40 @@
+require 'rails_helper'
+
 RSpec.describe TwitterClientController, type: :controller do
 
   describe 'index' do
     let(:user) { User.create(:provider => 'twitter',
-                             :uid => '41835955',
-                             :name => 'Kavita',
-                             :oauth_token => '41835955-p6Z4O0vbHbqLy76LZlXR5eiffFhokWxZX4LOU242a',
-                             :oauth_secret => 'aeBYPeRivPKQZ1iYVuFOSc3rUYze2UMpqxvbcLA2FMybc') }
-
-# => #<Twitter::REST::Client:0x007faea1b37b88 @consumer_key="eXl06RGtKNnEc8AYlMuKjpo66", @consumer_secret="mUWIbDVoYDbsWIzTbUyz3ZrA7uywZUYNPXp77xLv1f5ZdVQ5J8", @access_token="41835955-fzM6Wu3TkjVqbozwvh0WGf5mBeJp6yVC1eZuag0pq", @access_token_secret="LYj0IqVHXT94flonICFvfgMH7jROrW9XPFh9xW7H62lps">
-
-    let(:expected_response) {
-      {
-        tweet: 'Hey how are you',
-        tweet: 'Tweets #2'
-      }
-    }
+                             :uid => '2935410678',
+                             :name => 'Social Smarts',
+                             :oauth_token => '2935410678-GpBDrY8zuSDIXhX9TBOEZCFroNvmZzpgGELOecm',
+                             :oauth_secret => 'un2eJJAWAIJoHrzuHN9B3oJf9SidobAzFKL6KlSywmVvF') }
 
     before do
       VCR.use_cassette("user") do
-        @tweets = user.fetch_tweets
-        @mentions = user.fetch_mentions
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return user
+        get :index, format: :json
       end
     end
 
-    it 'returns tweets as json' do
-      get :index
+    it 'returns tweets text' do
+      expected_response = JSON.parse(response.body)
+      tweets = expected_response.first
       expect(response.status).to eq 200
-      # binding.pry
-      expect(JSON.parse(@tweets.to_json).first["tweet"]["text"]).to equal "hello"
+      expect(tweets.last).not_to be_empty
+      expect(tweets.last['tweet']['text']).to eq("Why it's harder than ever to unplug from our devices http://t.co/aa0q0Jj0QQ")
     end
 
-    it 'returns mentions as json' do
-      get :index
+    it 'returns mentions text' do
+      expected_response = JSON.parse(response.body)
+      mentions = expected_response.last
       expect(response.status).to eq 200
-      # binding.pry
-      expect(JSON.parse(@mentions.to_json).first["tweet"]["text"]).to equal ""
+      expect(mentions.first['tweet']['text']).to eq("@social_smarts Hello world!")
+    end
+
+    it 'returns tweets and mentions as json' do
+        json_response = response.body
+        parsed_response  = JSON.parse(response.body)
+        expect(json_response).to eq parsed_response.to_json
     end
 
   end

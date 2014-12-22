@@ -1,27 +1,17 @@
 class TwitterClientController < ApplicationController
-  respond_to :json, :html
+  # respond_to :json, :html
   # before_filter :require_sigin!
 
   def index
     if current_user
       @tweets = current_user.fetch_tweets
       @mentions = current_user.fetch_mentions
-      respond_with [@tweets, @mentions]
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: [@tweets, @mentions] }
+      end
     end
   end
-
-  $ajax ->
-    url: website.com/api/tweets
-
-  website.com/api/tweets
-  TweetsController#index
-  website.com/api/mentions
-  MentionsController#index
-  rivers.com/api/mentions/35
-  MentionsController#show
-
-  website.com/api/users
-
 
   def create
     current_user.tweet(params[:tweet])
