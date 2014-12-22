@@ -3,11 +3,9 @@ class TwitterClientController < ApplicationController
   before_filter :require_signin!
 
   def index
-    if current_user
       @tweets = current_user.fetch_tweets
       @mentions = current_user.fetch_mentions
       respond_with [@tweets, @mentions]
-    end
   end
 
   def create
