@@ -22,6 +22,7 @@ gem 'omniauth-twitter'
 gem 'hashie', "2.0.5"
 gem 'klout'
 gem 'angularjs-rails'
+gem 'zurb-foundation'
 
 group :test, :development do
   gem 'pry'
