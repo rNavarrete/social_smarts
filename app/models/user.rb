@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
 
   def fetch_tweets
     @tweets ||= client.home_timeline.map {|t| Tweet.new(t) }
-    # binding.pry
   end
 
   def fetch_mentions
