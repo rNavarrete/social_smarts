@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TwitterClientController, type: :controller do
+RSpec.describe TwitterTimelineController, type: :controller do
 
   describe 'index' do
     let(:user) { User.create(:provider => 'twitter',
@@ -18,23 +18,16 @@ RSpec.describe TwitterClientController, type: :controller do
 
     it 'returns tweets text' do
       expected_response = JSON.parse(response.body)
-      tweets = expected_response.first
+      tweets = expected_response
       expect(response.status).to eq 200
       expect(tweets.last).not_to be_empty
       expect(tweets.last['tweet']['text']).to eq("Why it's harder than ever to unplug from our devices http://t.co/aa0q0Jj0QQ")
     end
 
-    it 'returns mentions text' do
-      expected_response = JSON.parse(response.body)
-      mentions = expected_response.last
-      expect(response.status).to eq 200
-      expect(mentions.first['tweet']['text']).to eq("@social_smarts Hello world!")
-    end
-
     it 'returns tweets and mentions as json' do
-        json_response = response.body
-        parsed_response  = JSON.parse(response.body)
-        expect(json_response).to eq parsed_response.to_json
+      json_response = response.body
+      parsed_response  = JSON.parse(response.body)
+      expect(json_response).to eq parsed_response.to_json
     end
 
   end
