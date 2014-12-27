@@ -3,18 +3,4 @@
   <li ng-repeat="tweet in timeline">{{tweet.tweet.text}}</li>
 </ul>
 
-
-<script>
-$(document).ready(function(){
-  map = new GMaps({
-    div: '#map',
-    lat:  39.738436,
-    lng: -104.984859,
-    height: "400px",
-    width: "70%",
-    zoom: 12
-  });
-});
-</script>
-
-  <div id="map"> </div>
+<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
