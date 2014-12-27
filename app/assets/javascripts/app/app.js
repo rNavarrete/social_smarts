@@ -1,14 +1,9 @@
-angular.module('socialsmartsApp', ['socialsmartsApp.controllers'])
+angular.module('socialsmartsApp', ['ngRoute', 'socialsmartsApp.services', 'socialsmartsApp.directives', 'socialsmartsApp.filters', 'socialsmartsApp.controllers'])
 .config(function($routeProvider) {
   $routeProvider
     .when('/dashboard', {
       templateUrl: '/templates/dashboard.html', 
-      controller: 'HomeController',
-      resolve: {
-        session: function(SessionService) {
-          return SessionService.getCurrentUser();
-        }
-      }
+      controller: 'DashboardController',
     })
     .otherwise({
       redirectTo: '/dashboard'

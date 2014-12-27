@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
 
-  resources :twitter_client
+  resources :twitter_timeline, only: [:index, :create]
+  resources :twitter_mentions, only: [:index]
 
   get "/login" => redirect("/auth/twitter"), as: :login
   get '/auth/twitter/callback', to: 'sessions#create'
