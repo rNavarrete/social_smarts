@@ -41,4 +41,9 @@ class User < ActiveRecord::Base
     save!
     self
   end
+
+  def location
+    [client.verify_credentials.location]
+  end
+
 end
