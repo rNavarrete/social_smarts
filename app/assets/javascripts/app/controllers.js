@@ -10,12 +10,19 @@ angular.module('socialsmartsApp.controllers', [])
       $scope.mentions = []
       for (var i = 0; i < atmentions.length; i++) {
         if (atmentions[i].tweet.place) {
-          $scope.mentions.push({id: atmentions[i].tweet.id, coords: {latitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][1],
-            longitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][0]}
-          });
+          var ret = {idKey: i, latitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][1],
+            longitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][0], title: atmentions[i].tweet.text, show: false
+          };
+
+          ret.onClick = function() {
+            console.log("Clicked!");
+            ret.show = !ret.show;
+          };
+
+          $scope.mentions.push(ret);
         }
       }
-    console.log($scope.mentions)
+      console.log($scope.mentions[2].title)
     });
     $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyCMPvf6SDEQMMwrlpu1jp9hz_F5XdV4RaE').success(function(data) {
     $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
