@@ -10,8 +10,8 @@ angular.module('socialsmartsApp.controllers', [])
       $scope.mentions = []
       for (var i = 0; i < atmentions.length; i++) {
         if (atmentions[i].tweet.place) {
-          $scope.mentions.push({id: atmentions[i].tweet.id, coords: {latitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][0],
-            longitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][1]}
+          $scope.mentions.push({id: atmentions[i].tweet.id, coords: {latitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][1],
+            longitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][0]}
           });
         }
       }
