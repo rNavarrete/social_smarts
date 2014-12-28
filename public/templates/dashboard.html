@@ -1,6 +1,13 @@
 
 <ul>
   <li ng-repeat="tweet in timeline">{{tweet.tweet.text}}</li>
+  {{mentions[0].coords.latitude}}
 </ul>
 
-<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+
+  <ui-gmap-marker  idKey="9" coords="'{latitude:' + mentions[0].coords.latitude +' ,
+  longitude: -99.6680}'">
+</ui-gmap-marker>
+
+</ui-gmap-google-map>
