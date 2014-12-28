@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 
   resources :twitter_timeline, only: [:index, :create]
   resources :twitter_mentions, only: [:index]
+  resources :twitter_location, only: [:index]
 
   get "/login" => redirect("/auth/twitter"), as: :login
   get '/auth/twitter/callback', to: 'sessions#create'
   delete "/logout" => "sessions#destroy", as: :logout
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
