@@ -1,5 +1,22 @@
 angular.module('socialsmartsApp.controllers', [])
 .controller('DashboardController', function($scope, $http) {
+  $scope.tweet_message = "";
+
+  $scope.disabled = function(tweet_message) {
+    if (tweet_message == null || tweet_message.length > 140 || tweet_message.length < 1) {
+      return true;
+    }
+  };
+
+  $scope.length = function(tweet_message) {
+    if (tweet_message == null){
+      return 0
+    } else {
+      return tweet_message.length
+    }
+  }
+
+
   $http.get('/twitter_timeline.json').success(function(data) {
     $scope.timeline = data;
   });
@@ -27,9 +44,32 @@ angular.module('socialsmartsApp.controllers', [])
     $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
     });
   });
-  // TimelineService.getTimeline()
-  // .then(function(data) {
-  //   $scope.timeline = data;
-  // });
+
+  $scope.sendTweet = function(tweet_message) {
+    $http.post('/twitter_timeline.json', {tweet: tweet_message})
+    .success(function(data, status, headers, config) {
+      if (data.status == 'OK') {
+        $scope.tweet_message = null;
+        // $scope.messages = 'Your form has been sent!';
+        // $scope.submitted = false;
+      } else {
+        // $scope.messages = 'Oops, we received your request, but there was an error processing it.';
+        $log.error(data);
+      }
+    })
+    .error(function(data, status, headers, config) {
+      $scope.tweet_message = null;
+
+      // $scope.progress = data;
+      // $scope.tweet_message = 'There was a network error. Try again later.';
+      $log.error(data);
+    })
+    // .finally(function() {
+    //   // Hide status messages after three seconds.
+    //   $timeout(function() {
+    //     $scope.messages = null;
+    //   }, 3000);
+    // });
+  }
 
 });
