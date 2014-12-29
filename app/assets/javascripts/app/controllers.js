@@ -33,6 +33,29 @@ angular.module('socialsmartsApp.controllers', [])
   });
 
   $scope.sendTweet = function(tweet_message) {
-    $http.post('/twitter_timeline', {tweet: tweet_message})
+    $http.post('/twitter_timeline.json', {tweet: tweet_message})
+    .success(function(data, status, headers, config) {
+      if (data.status == 'OK') {
+        $scope.tweet_message = null;
+        // $scope.messages = 'Your form has been sent!';
+        // $scope.submitted = false;
+      } else {
+        // $scope.messages = 'Oops, we received your request, but there was an error processing it.';
+        $log.error(data);
+      }
+    })
+    .error(function(data, status, headers, config) {
+      $scope.tweet_message = null;
+
+      // $scope.progress = data;
+      // $scope.tweet_message = 'There was a network error. Try again later.';
+      $log.error(data);
+    })
+    // .finally(function() {
+    //   // Hide status messages after three seconds.
+    //   $timeout(function() {
+    //     $scope.messages = null;
+    //   }, 3000);
+    // });
   }
 });
