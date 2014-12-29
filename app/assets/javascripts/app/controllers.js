@@ -1,6 +1,14 @@
 angular.module('socialsmartsApp.controllers', [])
 .controller('DashboardController', function($scope, $http) {
-  $scope.tweet_message = ""
+  $scope.tweet_message = "";
+
+  $scope.disabled = function(tweet_message) {
+    if (tweet_message.length > 140 || tweet_message.length < 1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
 
   $http.get('/twitter_timeline.json').success(function(data) {
