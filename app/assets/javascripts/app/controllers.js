@@ -3,12 +3,18 @@ angular.module('socialsmartsApp.controllers', [])
   $scope.tweet_message = "";
 
   $scope.disabled = function(tweet_message) {
-    if (tweet_message.length > 140 || tweet_message.length < 1) {
+    if (tweet_message == null || tweet_message.length > 140 || tweet_message.length < 1) {
       return true;
-    } else {
-      return false;
     }
   };
+
+  $scope.length = function(tweet_message) {
+    if (tweet_message == null){
+      return 0
+    } else {
+      return tweet_message.length
+    }
+  }
 
 
   $http.get('/twitter_timeline.json').success(function(data) {

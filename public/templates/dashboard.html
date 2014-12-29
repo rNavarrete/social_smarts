@@ -1,6 +1,6 @@
   <input type="text"  ng-model="tweet_message" placeholder="Post a Tweet" required></input>
   <input type="submit" ng-click="sendTweet(tweet_message)" ng-disabled="disabled(tweet_message)"></input>
-  <h6>{{tweet_message.length}}</h6>
+  <h6>{{length(tweet_message)}}</h6>
 <ul>
   <li ng-repeat="tweet in timeline">{{tweet.tweet.text}}</li>
 </ul>
