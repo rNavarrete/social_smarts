@@ -31,4 +31,5 @@ angular.module('socialsmartsApp.controllers', [])
   // .then(function(data) {
   //   $scope.timeline = data;
   // });
+
 });
