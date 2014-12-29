@@ -1,6 +1,22 @@
 angular.module('socialsmartsApp.controllers', [])
-.controller('DashboardController', function($scope, $http, Timeline) {
+.controller('DashboardController', function($scope, $http, Timeline, TrackedTweet) {
   $scope.timeline = Timeline.query();
+  $scope.tracked = TrackedTweet.query();
+
+  $scope.track = function(tweet) {
+    var tracked_tweet = new TrackedTweet({
+      text: tweet.text,
+      screen_name: tweet.screen_name,
+      created_at: tweet.created_at
+    });
+    tracked_tweet.$save();
+    $scope.tracked = TrackedTweet.query();
+  };
+
+  $scope.untrack = function(tweet) {
+    new TrackedTweet.delete({id: tweet.id});
+    $scope.tracked = TrackedTweet.query();
+  }
 
   $http.get('/twitter_location.json').success(function(data) {
     var locale = data;
