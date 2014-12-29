@@ -9,6 +9,5 @@ class TwitterTimelineController < ApplicationController
 
   def create
     current_user.tweet(params[:tweet])
-    redirect_to root_path
   end
 end

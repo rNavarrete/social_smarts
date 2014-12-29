@@ -1,3 +1,9 @@
+<div>
+  <input type="text" ng-model="tweet_message" placeholder="send a tweet"></input>
+  <input type="submit" ng-click="sendTweet(tweet_message)"></input>
+</div>
+
+
 
 <ul>
   <li ng-repeat="tweet in timeline">{{tweet.tweet.text}}</li>

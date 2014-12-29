@@ -1,5 +1,8 @@
 angular.module('socialsmartsApp.controllers', [])
 .controller('DashboardController', function($scope, $http) {
+  $scope.tweet_message = ""
+
+
   $http.get('/twitter_timeline.json').success(function(data) {
     $scope.timeline = data;
   });
@@ -28,8 +31,8 @@ angular.module('socialsmartsApp.controllers', [])
     $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
     });
   });
-  // TimelineService.getTimeline()
-  // .then(function(data) {
-  //   $scope.timeline = data;
-  // });
+
+  $scope.sendTweet = function(tweet_message) {
+    $http.post('/twitter_timeline', {tweet: tweet_message})
+  }
 });
