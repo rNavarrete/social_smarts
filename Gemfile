@@ -29,6 +29,7 @@ group :test, :development do
   gem "codeclimate-test-reporter", require: nil
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'jasmine'
 end
 
 group :production do
