@@ -1,8 +1,7 @@
 angular.module('socialsmartsApp.controllers', [])
-.controller('DashboardController', function($scope, $http) {
-  $http.get('/twitter_timeline.json').success(function(data) {
-    $scope.timeline = data;
-  });
+.controller('DashboardController', function($scope, $http, Timeline) {
+  $scope.timeline = Timeline.query();
+
   $http.get('/twitter_location.json').success(function(data) {
     var locale = data;
 
