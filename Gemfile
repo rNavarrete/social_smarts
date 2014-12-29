@@ -21,6 +21,7 @@ gem 'hashie', "2.0.5"
 gem 'klout'
 gem 'angularjs-rails'
 gem 'zurb-foundation'
+gem "skylight"
 
 group :test, :development do
   gem 'pry'
