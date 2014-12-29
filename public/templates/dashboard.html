@@ -8,12 +8,13 @@
 <ul>
   <li ng-repeat="tweet in timeline">{{tweet.tweet.text}}</li>
 </ul>
+
 <div id="map_canvas">
   <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
 
     <ui-gmap-markers models="mentions" coords="'self'" icon="'icon'" click="'onClick'" idKey="'idKey'">
       <ui-gmap-windows show="show">
-        <div ng-non-bindable>{{mention.title}}</div>
+        <div ng-non-bindable>@{{author}} tweeted: {{title}}</div>
       </ui-gmap-windows>
     </ui-gmap-markers>
 
