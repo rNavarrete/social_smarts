@@ -70,4 +70,29 @@ angular.module('socialsmartsApp.controllers', [])
     });
   }
 
+  $scope.sendStweet = function(tweet_message, tweet_time) {
+    $http.post('/scheduled_tweet.json', {tweet: tweet_message, time: tweet_time })
+    .success(function(data, status, headers, config) {
+      if (data.status === 'ok') {
+        $scope.stweet_message = null;
+
+        $scope.messages = 'Your form has been sent!';
+        // $scope.submitted = false;
+      } else {
+        $scope.messages = 'Oops, we received your request, but there was an error processing it.';
+        // $log.error(data);
+      }
+    })
+    .error(function(data, status, headers, config) {
+      $scope.tweet_message = null;
+      $scope.messages = 'There was a network error. Try again later.';
+    })
+    .finally(function() {
+      // Hide status messages after three seconds.
+      $interval(function() {
+        $scope.messages = null;
+      }, [3000]);
+    });
+  }
+
 });
