@@ -23,7 +23,10 @@
   <h6>{{length(tweet_message)}}</h6>
 
   <input type="text"  ng-model="stweet_message" placeholder="Schedule a Tweet" required></input>
-  <input type="text"  ng-model="stweet_time" placeholder="Date/Time" required></input>
+  <div id="date-time" style="display:inline-flex">
+    <input type="date" ng-model="defaultDate" style="width: 60% margin-right: 5px;" value="defaultDate"></input>
+    <input type="time" style="width: 90%" value="12:00"></input>
+  </div>
   <input type="submit" ng-click="sendStweet(stweet_message, stweet_time)" ng-disabled="disabled(stweet_message)"></input>
   <h6>{{length(stweet_message)}}</h6>
 
