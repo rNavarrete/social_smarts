@@ -22,9 +22,6 @@ angular.module('socialsmartsApp.controllers', [])
     }
   }
 
-
-  $http.get('/twitter_timeline.json').success(function(data) {
-    $scope.timeline = data;
   $scope.tracked = TrackedTweet.query();
 
   $scope.track = function(tweet) {
@@ -123,5 +120,4 @@ angular.module('socialsmartsApp.controllers', [])
     });
   }
 
-})
 });
