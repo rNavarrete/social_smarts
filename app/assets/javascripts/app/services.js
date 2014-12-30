@@ -11,7 +11,7 @@ angular.module('socialsmartsApp.services', ['ngResource'])
     $http.get('/twitter_timeline.json').then(function(resp) {
       data.tweets = resp.data;
       $rootScope.$broadcast('timeline-poll');
-      $timeout(poller, 30000);
+      $timeout(poller, 60000);
     });
   };
   poller();
