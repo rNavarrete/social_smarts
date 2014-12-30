@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TwitterTimelineController, type: :controller do
+  render_views
 
   describe 'index' do
     let(:user) { User.create(:provider => 'twitter',
@@ -21,7 +22,7 @@ RSpec.describe TwitterTimelineController, type: :controller do
       tweets = expected_response
       expect(response.status).to eq 200
       expect(tweets.last).not_to be_empty
-      expect(tweets.last['tweet']['text']).to eq("Why it's harder than ever to unplug from our devices http://t.co/aa0q0Jj0QQ")
+      expect(tweets.last['text']).to eq("Why it's harder than ever to unplug from our devices http://t.co/aa0q0Jj0QQ")
     end
 
     it 'returns tweets and mentions as json' do

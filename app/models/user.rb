@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :tracked_tweets, dependent: :destroy
+
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first
     user ? user.update_auth_attrs(auth) : create do |user|

@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20141230021921) do
     t.datetime "updated_at"
   end
 
+  create_table "tracked_tweets", force: true do |t|
+    t.string  "text"
+    t.string  "screen_name"
+    t.integer "user_id"
+    t.string  "created_at"
+  end
+
   create_table "users", force: true do |t|
     t.string "provider"
     t.string "uid"

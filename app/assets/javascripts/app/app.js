@@ -14,6 +14,7 @@ angular.module('socialsmartsApp', ['ngRoute', 'socialsmartsApp.services', 'socia
       libraries: 'weather,geometry,visualization'
     });
 })
+.run(function(TimelinePoller) {})
 .run(function($rootScope){
     $rootScope.$apply($(document).foundation());
 });

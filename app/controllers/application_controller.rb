@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session,
   if: Proc.new { |c| c.request.format =~ %r{application/json} }
 
+  after_filter  :set_csrf_cookie_for_ng
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -17,4 +19,11 @@ class ApplicationController < ActionController::Base
             info: "Unauthorized"
           } unless current_user
   end
+
+
+  private
+
+    def set_csrf_cookie_for_ng
+      cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+    end
 end

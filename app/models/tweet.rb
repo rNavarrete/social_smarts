@@ -12,6 +12,10 @@ class Tweet
     tweet.user
   end
 
+  def created_at
+    tweet.created_at
+  end
+
   def user_klout_score
     @klout ||=  begin
                   Klout::TwUser.new(user.id).score.score.to_i
@@ -21,14 +25,3 @@ class Tweet
                 end
   end
 end
-#
-#   def as_json(options = {})
-#     {:stuff => "afafaf"}
-#   end
-# end
-#
-# tweet = Tweet.new
-#
-# render :json => tweet, :root => false
-# {"tweet": {"data": "blah"}}
-# {"data": blah}
