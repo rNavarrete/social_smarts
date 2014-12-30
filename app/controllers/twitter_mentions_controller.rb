@@ -4,6 +4,7 @@ class TwitterMentionsController < ApplicationController
 
   def index
     @mentions = current_user.fetch_mentions
-    respond_with @mentions
+    # binding.pry
+    # respond_with @mentions
   end
 end

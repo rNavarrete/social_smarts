@@ -5,6 +5,9 @@ angular.module('socialsmartsApp.services', ['ngResource'])
 .factory('TrackedTweet', function($resource) {
   return $resource('/tracked_tweets/:id.json');
 })
+.factory('Mention', function($resource) {
+  return $resource('/twitter_mentions/:id.json')
+})
 .factory('TimelinePoller', function($http, $timeout, $rootScope) {
   var data = {tweets: {}};
   var poller = function() {

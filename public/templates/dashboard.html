@@ -3,11 +3,12 @@
     <div class="row">
       <div class="large-6 small-6 columns">
       <input class="search"
-             type="text" 
+             type="text"
              placeholder="search timeline"
              ng-model="query">
       </div>
     </div>
+    <h3>Tweets</h3>
     <ul>
       <li ng-repeat-start="tweet in timeline | filter:query">
         <div>{{tweet.screen_name}}</div>
@@ -15,6 +16,16 @@
         <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
       <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
+    </ul>
+    <h3>Mentions</h3>
+    <ul>
+      <li ng-repeat-start="mention in usermentions | filter:query">
+        <div>{{mention.screen_name}}</div>
+        <div>{{mention.text}}</div>
+        <div>{{mention.user_klout_score}}</div>
+        <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
+      </li>
+      <button class="button tiny" ng-repeat-end ng-click="track(mention)">Track</button>
     </ul>
   </div>
 <div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
