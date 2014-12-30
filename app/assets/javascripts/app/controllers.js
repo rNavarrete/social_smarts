@@ -1,6 +1,5 @@
 angular.module('socialsmartsApp.controllers', [])
 .controller('DashboardController', function($scope, $http, Timeline, TrackedTweet, TimelinePoller) {
-  $scope.timeline = Timeline.query();
   $scope.tracked = TrackedTweet.query();
 
   $scope.track = function(tweet) {
@@ -9,13 +8,16 @@ angular.module('socialsmartsApp.controllers', [])
       screen_name: tweet.screen_name,
       created_at: tweet.created_at
     });
-    tracked_tweet.$save();
-    $scope.tracked = TrackedTweet.query();
+    tracked_tweet.$save(function() {
+      $scope.tracked = TrackedTweet.query();
+    });
   };
 
   $scope.untrack = function(tweet) {
-    new TrackedTweet.delete({id: tweet.id});
-    $scope.tracked = TrackedTweet.query();
+    var tracked_tweet = new TrackedTweet;
+    tracked_tweet.$delete({id: tweet.id}, function() {
+      $scope.tracked = TrackedTweet.query();
+    });
   }
 
   $scope.$on('timeline-poll', function() {
