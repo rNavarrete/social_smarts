@@ -5,8 +5,7 @@ angular.module('socialsmartsApp.controllers', [])
   var mm = today.getMonth() + 1;
   var yyyy = today.getFullYear();
   $scope.defaultDate = yyyy + "-" + mm + "-" + dd;
-
-
+  $scope.stweet_time = new Date(1970, 0, 1, 14, 57, 0)
   console.log($scope.defaultDate);
 
   $scope.disabled = function(tweet_message) {
