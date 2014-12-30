@@ -12,6 +12,7 @@
       <li ng-repeat-start="tweet in timeline | filter:query">
         <div>{{tweet.screen_name}}</div>
         <div>{{tweet.text}}</div>
+        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
       <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
     </ul>
@@ -22,6 +23,7 @@
       <li ng-repeat-start="tweet in tracked">
         <div>{{tweet.screen_name}}</div>
         <div>{{tweet.text}}</div>
+        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
       <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">unTrack</button>
     </ul>
