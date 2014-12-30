@@ -9,5 +9,6 @@ class TwitterTimelineController < ApplicationController
 
   def create
     current_user.tweet(params[:tweet])
+    respond_with( { status: 'ok' }.to_json, status: 201, location: root_path )
   end
 end

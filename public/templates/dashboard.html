@@ -1,3 +1,4 @@
+<div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
   <input type="text"  ng-model="tweet_message" placeholder="Post a Tweet" required></input>
   <input type="submit" ng-click="sendTweet(tweet_message)" ng-disabled="disabled(tweet_message)"></input>
   <h6>{{length(tweet_message)}}</h6>
