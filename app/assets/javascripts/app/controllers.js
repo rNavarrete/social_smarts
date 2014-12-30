@@ -60,19 +60,13 @@ angular.module('socialsmartsApp.controllers', [])
     })
     .error(function(data, status, headers, config) {
       $scope.tweet_message = null;
-
-      // $scope.progress = data;
       $scope.messages = 'There was a network error. Try again later.';
-      // $log.error(data);
     })
     .finally(function() {
       // Hide status messages after three seconds.
       $interval(function() {
         $scope.messages = null;
-      }, [1000]);
-      // setTimeout(function() {
-        // console.log($scope)
-      // }, 1000);
+      }, [3000]);
     });
   }
 
