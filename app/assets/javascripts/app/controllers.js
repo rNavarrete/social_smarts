@@ -1,5 +1,5 @@
 angular.module('socialsmartsApp.controllers', [])
-.controller('DashboardController', function($scope, $http, Timeline, TrackedTweet, TimelinePoller) {
+.controller('DashboardController', function($scope, $http, TrackedTweet, TimelinePoller) {
   $scope.tracked = TrackedTweet.query();
 
   $scope.track = function(tweet) {
