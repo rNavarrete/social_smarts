@@ -54,6 +54,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    colorize (0.7.5)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     debug_inspector (0.0.2)
@@ -124,6 +125,9 @@ GEM
       omniauth-oauth (~> 1.0)
     pg (0.17.1)
     phantomjs (1.9.7.1)
+    protractor-rails (0.0.12)
+      colorize
+      railties
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -246,6 +250,7 @@ DEPENDENCIES
   omniauth
   omniauth-twitter
   pg
+  protractor-rails
   pry
   rails (= 4.1.6)
   rspec-rails
