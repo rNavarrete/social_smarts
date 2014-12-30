@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :twitter_timeline, only: [:index, :create]
   resources :twitter_mentions, only: [:index]
   resources :twitter_location, only: [:index]
+  resources :scheduled_tweet, only: [:create]
 
   get "/login" => redirect("/auth/twitter"), as: :login
   get '/auth/twitter/callback', to: 'sessions#create'
