@@ -1,12 +1,13 @@
 angular.module('socialsmartsApp.controllers', [])
 .controller('DashboardController', function($scope, $http, $interval, TrackedTweet, TimelinePoller) {
-  $scope.tweet_message = "";
-  // var today = new Date();
-  // var dd = today.getDate();
-  // var mm = today.getMonth() + 1;
-  // var yyyy = today.getFullYear();
-  // $scope.defaultDate = new Date(yyyy + "-" + mm + "-" + dd)
-  // console.log(today);
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1;
+  var yyyy = today.getFullYear();
+  $scope.defaultDate = yyyy + "-" + mm + "-" + dd;
+
+
+  console.log($scope.defaultDate);
 
   $scope.disabled = function(tweet_message) {
     if (tweet_message == null || tweet_message.length > 140 || tweet_message.length < 1) {
