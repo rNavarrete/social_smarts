@@ -1,10 +1,12 @@
 angular.module('socialsmartsApp.controllers', [])
-.controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService) {
+.controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService, UserMention) {
   pollingService.startPolling('timeline', '/twitter_timeline.json', 60000, function(resp) {
     $scope.timeline = resp.data;
   });
 
   $scope.tracked = TrackedTweet.query();
+
+  $scope.usermentions = UserMention.query();
 
   $scope.tweet_message = "";
   var today = new Date();

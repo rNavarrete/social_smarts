@@ -8,11 +8,22 @@
              ng-model="query">
       </div>
     </div>
+    <h3>Tweets</h3>
     <ul>
       <li ng-repeat-start="tweet in timeline | filter:query">
         <div>{{tweet.screen_name}}</div>
         <div>{{tweet.text}}</div>
         <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+      </li>
+      <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
+    </ul>
+    <h3>Mentions</h3>
+    <ul>
+      <li ng-repeat-start="mention in usermentions | filter:query">
+        <div>{{mention.screen_name}}</div>
+        <div>{{mention.klout_score}}</div>
+        <div>{{mention.text}}</div>
+        <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
       <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
     </ul>
