@@ -7,7 +7,6 @@ angular.module('socialsmartsApp.controllers', [])
   $scope.tracked = TrackedTweet.query();
 
   $scope.tweet_message = "";
-.controller('DashboardController', function($scope, $http, $interval, TrackedTweet, TimelinePoller) {
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth() + 1;
