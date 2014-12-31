@@ -8,6 +8,8 @@ angular.module('socialsmartsApp.controllers', [])
 
   $scope.usermentions = UserMention.query();
 
+  $scope.orderProp = '-klout_score';
+
   $scope.tweet_message = "";
   var today = new Date();
   var dd = today.getDate();
