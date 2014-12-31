@@ -7,7 +7,7 @@ angular.module('socialsmartsApp.controllers', [])
   $scope.defaultDate = yyyy + "-" + mm + "-" + dd;
   $scope.stweet_time = new Date(1970, 0, 1, 14, 57, 0)
   $scope.stweet_date = today
-  $scope.stweet_date_time = $scope.stweet_time + "/" + $scope.stweet_date
+
 
   $scope.disabled = function(tweet_message) {
     if (tweet_message == null || tweet_message.length > 140 || tweet_message.length < 1) {
@@ -96,8 +96,8 @@ angular.module('socialsmartsApp.controllers', [])
     });
   }
 
-  $scope.sendStweet = function(tweet_message, tweet_time) {
-    $http.post('/scheduled_tweet.json', {tweet: tweet_message, time: tweet_time })
+  $scope.sendStweet = function(tweet_message, tweet_time, tweet_date) {
+    $http.post('/scheduled_tweet.json', {tweet: tweet_message, time: tweet_time, date: tweet_date})
     .success(function(data, status, headers, config) {
       if (data.status === 'ok') {
         $scope.stweet_message = null;

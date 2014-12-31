@@ -27,8 +27,9 @@
     <input type="date" style="width: 60% margin-right: 5px;" min="{{defaultDate}}" ng-model="stweet_date"></input>
     <input type="time" style="width: 90%" ng-model="stweet_time"></input>
   </div>
-  <input type="submit" ng-click="sendStweet(stweet_message, stweet_date_time)" ng-disabled="disabled(stweet_message)"></input>
+  <input type="submit" ng-click="sendStweet(stweet_message, stweet_time, stweet_date)" ng-disabled="disabled(stweet_message)"></input>
   <h6>{{length(stweet_message)}}</h6>
+  <h6>{{stweet_date + "/" + stweet_time}}<h6>
 
 <ul>
   <li ng-repeat="tweet in timeline">{{tweet.tweet.text}}</li>
