@@ -5,6 +5,7 @@ class CreateTrackedTweets < ActiveRecord::Migration
       t.string :screen_name
       t.references :user
       t.string :created_at
+      t.integer :klout_score
     end
   end
 end

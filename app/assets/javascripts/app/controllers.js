@@ -41,6 +41,7 @@ angular.module('socialsmartsApp.controllers', [])
     var tracked_tweet = new TrackedTweet({
       text: tweet.text,
       screen_name: tweet.screen_name,
+      klout_score: tweet.klout_score,
       created_at: tweet.created_at
     });
     tracked_tweet.$save(function() {

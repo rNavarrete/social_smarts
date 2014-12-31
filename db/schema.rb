@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20141231183508) do
     t.string  "screen_name"
     t.integer "user_id"
     t.string  "created_at"
+    t.integer "klout_score"
   end
 
   create_table "users", force: true do |t|

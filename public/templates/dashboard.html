@@ -13,6 +13,7 @@
       <li ng-repeat-start="tweet in timeline | filter:query">
         <div>{{tweet.screen_name}}</div>
         <div>{{tweet.text}}</div>
+        <div>{{tweet.klout_score}}</div>
         <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
       <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
@@ -30,7 +31,7 @@
         <div>{{mention.text}}</div>
         <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
-      <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
+      <button class="button tiny" ng-repeat-end ng-click="track(mention)">Track</button>
     </ul>
   </div>
 <div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
@@ -53,6 +54,7 @@
     <ul>
       <li ng-repeat-start="tweet in tracked">
         <div>{{tweet.screen_name}}</div>
+        <div>{{tweet.klout_score}}</div>
         <div>{{tweet.text}}</div>
         <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
