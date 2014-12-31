@@ -1,19 +1,26 @@
 angular.module('socialsmartsApp.services', ['ngResource'])
-// .factory('Timeline', function($resource) {
-//   return $resource('/twitter_timeline/:id.json');
-// })
 .factory('TrackedTweet', function($resource) {
   return $resource('/tracked_tweets/:id.json');
 })
-.factory('TimelinePoller', function($http, $timeout, $rootScope) {
-  var data = {tweets: {}};
-  var poller = function() {
-    $http.get('/twitter_timeline.json').then(function(resp) {
-      data.tweets = resp.data;
-      $rootScope.$broadcast('timeline-poll');
-      $timeout(poller, 60000);
-    });
-  };
-  poller();
-  return {data: data};
+.factory('pollingService', function($http){
+    var defaultPollingTime = 10000;
+    var polls = {};
+
+    return {
+        startPolling: function(name, url, pollingTime, callback) {
+            // Check to make sure poller doesn't already exist
+            if (!polls[name]) {
+                var poller = function() {
+                    $http.get(url).then(callback);
+                }
+                poller();
+                polls[name] = setInterval(poller, pollingTime || defaultPollingTime);
+            }
+        },
+
+        stopPolling: function(name) {
+            clearInterval(polls[name]);
+            delete polls[name];
+        }
+    }
 });

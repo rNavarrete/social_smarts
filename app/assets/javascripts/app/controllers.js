@@ -1,5 +1,9 @@
 angular.module('socialsmartsApp.controllers', [])
-.controller('DashboardController', function($scope, $http, $interval, TrackedTweet, TimelinePoller) {
+.controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService) {
+  pollingService.startPolling('timeline', '/twitter_timeline.json', 60000, function(resp) {
+    $scope.timeline = resp.data;
+  });
+
   $scope.tweet_message = "";
 
   $scope.disabled = function(tweet_message) {
@@ -35,10 +39,6 @@ angular.module('socialsmartsApp.controllers', [])
       $scope.tracked = TrackedTweet.query();
     });
   }
-
-  $scope.$on('timeline-poll', function() {
-    $scope.timeline = TimelinePoller.data.tweets;
-  });
 
   $http.get('/twitter_location.json').success(function(data) {
     var locale = data;
