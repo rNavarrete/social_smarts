@@ -18,8 +18,13 @@
       <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
     </ul>
     <h3>Mentions</h3>
+    Sort by:
+    <select ng-model="orderProp">
+      <option value="-klout_score">Klout Score</option>
+      <option value="created_at">Date</option>
+    </select>
     <ul>
-      <li ng-repeat-start="mention in usermentions | filter:query">
+      <li ng-repeat-start="mention in usermentions | orderBy:orderProp">
         <div>{{mention.screen_name}}</div>
         <div>{{mention.klout_score}}</div>
         <div>{{mention.text}}</div>
