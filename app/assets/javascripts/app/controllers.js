@@ -4,6 +4,8 @@ angular.module('socialsmartsApp.controllers', [])
     $scope.timeline = resp.data;
   });
 
+  $scope.tracked = TrackedTweet.query();
+
   $scope.tweet_message = "";
 
   $scope.disabled = function(tweet_message) {
@@ -20,7 +22,6 @@ angular.module('socialsmartsApp.controllers', [])
     }
   }
 
-  $scope.tracked = TrackedTweet.query();
 
   $scope.track = function(tweet) {
     var tracked_tweet = new TrackedTweet({
