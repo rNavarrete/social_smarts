@@ -2,9 +2,6 @@ angular.module('socialsmartsApp.services', ['ngResource'])
 .factory('TrackedTweet', function($resource) {
   return $resource('/tracked_tweets/:id.json');
 })
-.factory('UserMention', function($resource) {
-  return $resource('/twitter_usermentions/:id.json');
-})
 .factory('pollingService', function($http){
     var defaultPollingTime = 10000;
     var polls = {};

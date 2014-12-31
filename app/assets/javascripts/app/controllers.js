@@ -1,12 +1,14 @@
 angular.module('socialsmartsApp.controllers', [])
-.controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService, UserMention) {
+.controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService) {
   pollingService.startPolling('timeline', '/twitter_timeline.json', 60000, function(resp) {
     $scope.timeline = resp.data;
   });
 
-  $scope.tracked = TrackedTweet.query();
+  pollingService.startPolling('usermentions', '/twitter_usermentions.json', 60000, function(resp) {
+    $scope.usermentions = resp.data;
+  });
 
-  $scope.usermentions = UserMention.query();
+  $scope.tracked = TrackedTweet.query();
 
   $scope.orderProp = '-klout_score';
 
