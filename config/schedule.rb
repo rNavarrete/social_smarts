@@ -20,7 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 set :output, "/Users/glenegbert/Dropbox/ruby_projects/social_smarts/log/cron_log.log"
 
-set :environment, Rails.env
+set :environment, "development"
 
 
 every 1.minute do
