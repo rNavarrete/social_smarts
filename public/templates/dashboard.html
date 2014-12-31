@@ -29,7 +29,6 @@
   </div>
   <input type="submit" ng-click="sendStweet(stweet_message, stweet_date_time)" ng-disabled="disabled(stweet_message)"></input>
   <h6>{{length(stweet_message)}}</h6>
-  <h6>{{stweet_time}}</h6>
 
 <ul>
   <li ng-repeat="tweet in timeline">{{tweet.tweet.text}}</li>
