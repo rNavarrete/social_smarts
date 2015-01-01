@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- .angular-google-map-container { height: 400px; border: 4px ridge white; }
+ .angular-google-map-container { height: 400px; border: 4px ridge white; width: 300px; }
 
 
 
