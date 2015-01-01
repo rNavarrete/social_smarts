@@ -3,41 +3,12 @@
 
 
 
-
-
-
-
-<div id="map_canvas" class="row">
-  <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
-
-    <ui-gmap-markers models="mentions" coords="'self'" icon="'icon'" click="'onClick'" idKey="'idKey'">
-      <ui-gmap-windows show="show">
-        <div ng-non-bindable>@{{author}} tweeted: {{title}}</div>
-      </ui-gmap-windows>
-    </ui-gmap-markers>
-
-  </ui-gmap-google-map>
-</div>
-
-
-
-
-
-
-
 <div class="row">
-  <div class="large-6 columns">
-    <div class="row">
-      <div class="large-6 small-6 columns">
-      <input class="search"
-             type="text"
-             placeholder="search timeline"
-             ng-model="query">
-      </div>
-    </div>
+  <div class="large-3 columns">
     <h3>Tweets</h3>
+    <input class="search" type="text" placeholder="search timeline" ng-model="query">
     <ul>
-      <li ng-repeat-start="tweet in timeline | filter:query">
+      <li ng-repeat-start="tweet in timeline | filter:query" style=" overflow: scroll;">
         <div>{{tweet.screen_name}}</div>
         <div>{{tweet.text}}</div>
         <div>{{tweet.klout_score}}</div>
@@ -45,22 +16,53 @@
       </li>
       <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
     </ul>
+  </div>
+
+  <div class="large-3 columns">
     <h3>Mentions</h3>
-    Sort by:
-    <select ng-model="orderProp">
-      <option value="-klout_score">Klout Score</option>
-      <option value="created_at">Date</option>
-    </select>
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="-klout_score">Klout Score</option>
+        <option value="created_at">Date</option>
+      </select>
+      <ul>
+        <li ng-repeat-start="mention in usermentions | orderBy:orderProp">
+          <div>{{mention.screen_name}}</div>
+          <div>{{mention.klout_score}}</div>
+          <div>{{mention.text}}</div>
+          <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
+        </li>
+        <button class="button tiny" ng-repeat-end ng-click="track(mention)">Track</button>
+      </ul>
+  </div>
+
+  <div class="large-3 columns">
+    <div id="map_canvas">
+      <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
+
+        <ui-gmap-markers models="mentions" coords="'self'" icon="'icon'" click="'onClick'" idKey="'idKey'">
+          <ui-gmap-windows show="show">
+            <div ng-non-bindable>@{{author}} tweeted: {{title}}</div>
+          </ui-gmap-windows>
+        </ui-gmap-markers>
+      </ui-gmap-google-map>
+    </div>
+  </div>
+
+  <div class="large-3 columns">
     <ul>
-      <li ng-repeat-start="mention in usermentions | orderBy:orderProp">
-        <div>{{mention.screen_name}}</div>
-        <div>{{mention.klout_score}}</div>
-        <div>{{mention.text}}</div>
-        <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
+      <h3>Tracked Tweets</h3>
+      <li ng-repeat-start="tweet in tracked">
+        <div>{{tweet.screen_name}}</div>
+        <div>{{tweet.klout_score}}</div>
+        <div>{{tweet.text}}</div>
+        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
-      <button class="button tiny" ng-repeat-end ng-click="track(mention)">Track</button>
+      <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">unTrack</button>
     </ul>
   </div>
+</div>
+
 <div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
   <input type="text"  ng-model="tweet_message" placeholder="Post a Tweet" required></input>
   <input type="submit" ng-click="sendTweet(tweet_message)" ng-disabled="disabled(tweet_message)"></input>
@@ -77,17 +79,7 @@
 <ul>
   <li ng-repeat="tweet in timeline">{{tweet.tweet.text}}</li>
 </ul>
-  <div class="large-6 columns">
-    <ul>
-      <li ng-repeat-start="tweet in tracked">
-        <div>{{tweet.screen_name}}</div>
-        <div>{{tweet.klout_score}}</div>
-        <div>{{tweet.text}}</div>
-        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
-      </li>
-      <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">unTrack</button>
-    </ul>
-  </div>
+
 </div>
 
 
