@@ -60,6 +60,7 @@
           <div>{{tweet.text}}</div>
           <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
         </li>
+        <button class="button tiny" ng-click="deleteTrack(tweet)">delete</button>
         <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">resolve</button>
       </ul>
     </div>
@@ -72,6 +73,7 @@
           <div>{{tweet.text}}</div>
           <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
         </li>
+        <button class="button tiny" ng-click="deleteTrack(tweet)">delete</button>
         <button class="button tiny" ng-repeat-end ng-click="retrack(tweet)">unresolve</button>
       </ul>
     </div>
