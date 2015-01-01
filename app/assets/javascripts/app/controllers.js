@@ -1,5 +1,8 @@
 angular.module('socialsmartsApp.controllers', [])
 .controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService) {
+
+  sortTrackedTweets();
+
   pollingService.startPolling('timeline', '/twitter_timeline.json', 60000, function(resp) {
     $scope.timeline = resp.data;
   });
@@ -7,8 +10,6 @@ angular.module('socialsmartsApp.controllers', [])
   pollingService.startPolling('usermentions', '/twitter_usermentions.json', 60000, function(resp) {
     $scope.usermentions = resp.data;
   });
-
-  $scope.tracked = TrackedTweet.query();
 
   $scope.orderProp = '-klout_score';
 
@@ -35,26 +36,36 @@ angular.module('socialsmartsApp.controllers', [])
     }
   }
 
-  $scope.tracked = TrackedTweet.query();
-
   $scope.track = function(tweet) {
     var tracked_tweet = new TrackedTweet({
       text: tweet.text,
       screen_name: tweet.screen_name,
       klout_score: tweet.klout_score,
+      status: "unresolved",
       created_at: tweet.created_at
     });
     tracked_tweet.$save(function() {
-      $scope.tracked = TrackedTweet.query();
+      sortTrackedTweets();
     });
   };
 
   $scope.untrack = function(tweet) {
-    var tracked_tweet = new TrackedTweet;
-    tracked_tweet.$delete({id: tweet.id}, function() {
-      $scope.tracked = TrackedTweet.query();
+    var tracked_tweet = new TrackedTweet({
+      status: "resolved"
     });
-  }
+    tracked_tweet.$update({id: tweet.id}, function() {
+      sortTrackedTweets();
+    });
+  };
+
+  $scope.retrack = function(tweet) {
+    var untracked_tweet = new TrackedTweet({
+      status: "unresolved"
+    });
+    untracked_tweet.$update({id: tweet.id}, function() {
+      sortTrackedTweets();
+    });
+  };
 
   $http.get('/twitter_location.json').success(function(data) {
     var locale = data;
@@ -67,7 +78,6 @@ angular.module('socialsmartsApp.controllers', [])
           };
 
           ret.onClick = function() {
-            console.log("Clicked!");
             ret.show = !ret.show;
           };
 
@@ -127,6 +137,18 @@ angular.module('socialsmartsApp.controllers', [])
       $interval(function() {
         $scope.messages = null;
       }, [3000]);
+    });
+  }
+
+  function sortTrackedTweets() {
+    TrackedTweet.query(function(resp) {
+      var tracked_tweets = resp
+      $scope.unresolved = tracked_tweets.filter(function(v) {
+        return v.status === "unresolved";
+      });
+      $scope.resolved = tracked_tweets.filter(function(v) {
+        return v.status === "resolved";
+      });
     });
   }
 
