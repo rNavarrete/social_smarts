@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
     user = where(provider: auth.provider, uid: auth.uid).first
     user ? user.update_auth_attrs(auth) : create do |user|
                                             user.provider = auth.provider
+                                            user.image = auth.info.image
                                             user.uid = auth.uid
                                             user.name = auth.info.name
                                             user.oauth_token = auth.credentials.token

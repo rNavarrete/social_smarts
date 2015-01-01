@@ -14,3 +14,24 @@
  *= require_self
  */
  .angular-google-map-container { height: 400px; }
+
+
+
+ /*navbar*/
+
+.top-bar{
+
+}
+
+
+
+a {
+  color: #222;
+}
+
+
+body > nav > ul > li.name > h1 > a{
+  color: white;xx
+}
+
+
