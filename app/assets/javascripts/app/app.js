@@ -1,4 +1,4 @@
-angular.module('socialsmartsApp', ['ngRoute', 'socialsmartsApp.services', 'socialsmartsApp.directives', 'socialsmartsApp.filters', 'socialsmartsApp.controllers', 'uiGmapgoogle-maps'])
+angular.module('socialsmartsApp', ['ngRoute', 'socialsmartsApp.services', 'socialsmartsApp.directives', 'socialsmartsApp.filters', 'socialsmartsApp.controllers', 'uiGmapgoogle-maps', 'ngSanitize'])
 .config(function($routeProvider, uiGmapGoogleMapApiProvider) {
   $routeProvider
     .when('/dashboard', {

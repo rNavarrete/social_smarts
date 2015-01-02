@@ -24,6 +24,7 @@ gem 'angularjs-rails'
 gem 'zurb-foundation'
 gem "skylight"
 gem 'whenever', :require => false
+gem 'twitter-text'
 
 group :test, :development do
   gem 'pry'

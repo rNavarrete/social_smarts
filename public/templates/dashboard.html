@@ -12,7 +12,7 @@
     <ul>
       <li ng-repeat-start="tweet in timeline | filter:query">
         <div>{{tweet.screen_name}}</div>
-        <div>{{tweet.text}}</div>
+        <div ng-bind-html="tweet.text"></div>
         <div>{{tweet.klout_score}}</div>
         <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
@@ -28,7 +28,7 @@
       <li ng-repeat-start="mention in usermentions | orderBy:orderProp">
         <div>{{mention.screen_name}}</div>
         <div>{{mention.klout_score}}</div>
-        <div>{{mention.text}}</div>
+        <div ng-bind-html="mention.text"></div>
         <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
       <button class="button tiny" ng-repeat-end ng-click="track(mention)">Track</button>
@@ -57,7 +57,7 @@
         <li ng-repeat-start="tweet in unresolved">
           <div>{{tweet.screen_name}}</div>
           <div>{{tweet.klout_score}}</div>
-          <div>{{tweet.text}}</div>
+          <div ng-bind-html="tweet.text"></div>
           <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
         </li>
         <button class="button tiny" ng-click="deleteTrack(tweet)">delete</button>
@@ -70,7 +70,7 @@
         <li ng-repeat-start="tweet in resolved">
           <div>{{tweet.screen_name}}</div>
           <div>{{tweet.klout_score}}</div>
-          <div>{{tweet.text}}</div>
+          <div ng-bind-html="tweet.text"></div>
           <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
         </li>
         <button class="button tiny" ng-click="deleteTrack(tweet)">delete</button>
