@@ -22,7 +22,7 @@ RSpec.describe TwitterTimelineController, type: :controller do
       tweets = expected_response
       expect(response.status).to eq 200
       expect(tweets.last).not_to be_empty
-      expect(tweets.last['text']).to eq("Why it's harder than ever to unplug from our devices http://t.co/aa0q0Jj0QQ")
+      expect(tweets.last['text']).to eq("Why it's harder than ever to unplug from our devices <a href=\"http://t.co/aa0q0Jj0QQ\" rel=\"nofollow\" target=\"_blank\">http://t.co/aa0q0Jj0QQ</a>")
     end
 
     it 'returns tweets and mentions as json' do
