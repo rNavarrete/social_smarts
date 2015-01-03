@@ -5,44 +5,50 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMPvf6SDEQMMwrlpu1jp9hz_F5XdV4RaE"></script>
-<script type="text/javascript" src="http://hpneo.github.io/gmaps/gmaps.js"></script>
-<script type="text/javascript" src="https://hpneo.github.io/gmaps/prettify/prettify.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/angular.moment/0.8.3/angular-moment.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+  <script type="text/stylesheet" src="http://cdn.foundation5.zurb.com/foundation.css"></script>
+  <script type="text/javascript" src="http://cdn.foundation5.zurb.com/foundation.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMPvf6SDEQMMwrlpu1jp9hz_F5XdV4RaE"></script>
+  <script type="text/javascript" src="http://hpneo.github.io/gmaps/gmaps.js"></script>
+  <script type="text/javascript" src="https://hpneo.github.io/gmaps/prettify/prettify.js"></script>
 </head>
 
+
+
+
 <body>
-  <nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="#">My Site</a></h1>
-    </li>
-     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-  </ul>
+  <div class="row">
+    <div class="large-2 columns">
+      <ul class="side-nav">
+        <li><img id="profile_img" src="<%= current_user.image %>"></li>
+        <li class="active"><a id="simple-menu" href="#sidr">Toggle menu</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+        <li><a href="#">Link 4</a></li>
+      </ul>
+    </div>
 
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-      <li class="active"><a href="#">Right Button Active</a></li>
-      <li class="has-dropdown">
-        <a href="#">Right Button Dropdown</a>
-        <ul class="dropdown">
-          <li><a href="#">First link in dropdown</a></li>
-          <li class="active"><a href="#">Active link in dropdown</a></li>
-        </ul>
-      </li>
-    </ul>
 
-    <!-- Left Nav Section -->
-    <ul class="left">
-      <li><img src="<%= current_user.image %>"></li>
-    </ul>
-  </section>
-</nav>
-  <div ng-view></div>
+
+    <div ng-view></div>
+    <div id="sidr">
+
+    <div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
+    <input type="text"  ng-model="tweet_message" placeholder="Post a Tweet" required></input>
+    <input type="submit" ng-click="sendTweet(tweet_message)" ng-disabled="disabled(tweet_message)"></input>
+    <h6>Charaters: {{length(tweet_message)}}</h6>
+
+    <input type="text"  ng-model="stweet_message" placeholder="Schedule a Tweet" required></input>
+    <div id="date-time" style="display:inline-flex">
+      <input type="date" style="width: 60% margin-right: 5px;" min="{{defaultDate}}" ng-model="stweet_date"></input>
+      <input type="time" style="width: 90%" ng-model="stweet_time"></input>
+    </div>
+    <input type="submit" ng-click="sendStweet(stweet_message, stweet_time, stweet_date)" ng-disabled="disabled(stweet_message)"></input>
+    <h6>Characters: {{length(stweet_message)}}</h6>
+</div>
+
+
+
+
+
 </body>
-
 </html>

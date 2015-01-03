@@ -22,18 +22,18 @@
 .top-bar{
   opacity: 0.4;
   filter: blur(5px);
-
 }
-
-
 
 a {
   color: #222;
 }
 
-
 body > nav > ul > li.name > h1 > a{
-  color: white;xx
+  color: white;
 }
 
+#profile_img{
+  border-radius: 38px;
+  border: 2px ridge white;
+}
 
