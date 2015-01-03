@@ -34,6 +34,7 @@
   </div>
 
   <div class="large-3 columns">
+    <h3>Mentions Map</h3>
     <div id="map_canvas">
       <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
 
@@ -49,38 +50,39 @@
 
 
 
-  <h3>Tracked Tweets</h3>
-  <ul>
-    <li ng-repeat-start="tweet in tracked">
-      <div>{{tweet.screen_name}}</div>
-      <div>{{tweet.klout_score}}</div>
-      <div>{{tweet.text}}</div>
-      <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
-    </li>
-    <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">unTrack</button>
-  </ul>
+  <div class="large-2 columns">
+    <h3>Tracked Tweets</h3>
+    <ul>
+      <li ng-repeat-start="tweet in tracked">
+        <div>{{tweet.screen_name}}</div>
+        <div>{{tweet.klout_score}}</div>
+        <div>{{tweet.text}}</div>
+        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+      </li>
+      <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">unTrack</button>
+    </ul>
 
-    <div class="large-2 columns">
-      <h3>tracked</h3>
-      <ul>
-        <li ng-repeat-start="tweet in unresolved">
-          <div>{{tweet.screen_name}}</div>
-          <div>{{tweet.klout_score}}</div>
-          <div>{{tweet.text}}</div>
-          <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
-        </li>
-        <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">resolve</button>
-      </ul>
-      <h3>resolved</h3>
-      <ul>
-        <li ng-repeat-start="tweet in resolved">
-          <div>{{tweet.screen_name}}</div>
-          <div>{{tweet.klout_score}}</div>
-          <div>{{tweet.text}}</div>
-          <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
-        </li>
-        <button class="button tiny" ng-repeat-end ng-click="retrack(tweet)">unresolve</button>
-      </ul>
-    </div>
+    <h3>tracked</h3>
+    <ul>
+      <li ng-repeat-start="tweet in unresolved">
+        <div>{{tweet.screen_name}}</div>
+        <div>{{tweet.klout_score}}</div>
+        <div>{{tweet.text}}</div>
+        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+      </li>
+      <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">resolve</button>
+    </ul>
+
+    <h3>resolved</h3>
+    <ul>
+      <li ng-repeat-start="tweet in resolved">
+        <div>{{tweet.screen_name}}</div>
+        <div>{{tweet.klout_score}}</div>
+        <div>{{tweet.text}}</div>
+        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+      </li>
+      <button class="button tiny" ng-repeat-end ng-click="retrack(tweet)">unresolve</button>
+    </ul>
+  </div>
 
 

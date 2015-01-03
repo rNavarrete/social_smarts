@@ -14,10 +14,14 @@
  *= require_self
  */
 
+ html,body {
+  max-height:1400px;
+  }
+
 .row{
   max-width: 100%;
 }
- .angular-google-map-container { height: 400px; border: 4px ridge white; width: 300px; }
+ .angular-google-map-container { height: 400px; border: 4px ridge white; width: 300px; border-radius: 38px; }
 
 
 
