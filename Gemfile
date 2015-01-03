@@ -35,6 +35,7 @@ group :test, :development do
   gem 'binding_of_caller'
   gem 'jasmine'
   gem 'protractor-rails'
+  gem 'factory_girl_rails'
 end
 
 group :production do
