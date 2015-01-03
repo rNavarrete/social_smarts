@@ -60,8 +60,7 @@
     <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">unTrack</button>
   </ul>
 
-  <div class="row">
-    <div class="large-3 columns">
+    <div class="large-2 columns">
       <h3>tracked</h3>
       <ul>
         <li ng-repeat-start="tweet in unresolved">
@@ -72,8 +71,6 @@
         </li>
         <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">resolve</button>
       </ul>
-    </div>
-    <div class="large-6 columns">
       <h3>resolved</h3>
       <ul>
         <li ng-repeat-start="tweet in resolved">
@@ -85,6 +82,5 @@
         <button class="button tiny" ng-repeat-end ng-click="retrack(tweet)">unresolve</button>
       </ul>
     </div>
-  </div>
 
 
