@@ -18,12 +18,7 @@ RSpec.describe TrackedTweetsController do
 
   describe "POST create" do
     it "responds with a created tracked tweet in JSON" do
-      post :create, format: :json, text: "new tweet", 
-                                   screen_name: "kavita", 
-                                   created_at: "today", 
-                                   klout_score: 28, 
-                                   status: "unresolved",
-                                   id: 3
+      post :create, format: :json, text: "new tweet", screen_name: "kavita", created_at: "today", klout_score: 28, status: "unresolved"
 
       expect(response).to have_http_status(:created)
       parsed_body = JSON.parse(response.body)
@@ -32,10 +27,14 @@ RSpec.describe TrackedTweetsController do
   end
 
   describe "PATCH update" do
+    it "updates a tracked tweet and returns it in JSON" do
+      patch :update, format: :json, id: 1, status: "resolved" 
+      expect(response).to have_http_status(:no_content)
+    end
   end
 
   describe "DELETE destroy" do
-    it "deletes a tracked tweet and returns it in JSON" do
+    it "deletes a tracked tweet" do
       delete :destroy, format: :json, id: 1
       expect(response).to have_http_status(:no_content)
     end
