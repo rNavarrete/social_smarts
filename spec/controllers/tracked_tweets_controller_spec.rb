@@ -30,13 +30,15 @@ RSpec.describe TrackedTweetsController do
     it "updates a tracked tweet and returns it in JSON" do
       patch :update, format: :json, id: 1, status: "resolved" 
       expect(response).to have_http_status(:no_content)
+      expect(TrackedTweet.find(1).status).to eq "resolved"
     end
   end
 
   describe "DELETE destroy" do
     it "deletes a tracked tweet" do
-      delete :destroy, format: :json, id: 1
+      delete :destroy, id: 1, format: :json
       expect(response).to have_http_status(:no_content)
+      expect{ TrackedTweet.find(1) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
