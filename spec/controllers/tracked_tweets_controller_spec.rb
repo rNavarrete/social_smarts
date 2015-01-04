@@ -22,7 +22,8 @@ RSpec.describe TrackedTweetsController do
                                    screen_name: "kavita", 
                                    created_at: "today", 
                                    klout_score: 28, 
-                                   status: "unresolved"
+                                   status: "unresolved",
+                                   id: 3
 
       expect(response).to have_http_status(:created)
       parsed_body = JSON.parse(response.body)
