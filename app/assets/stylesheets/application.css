@@ -36,6 +36,7 @@
   background-color: black;
   overflow-y: hidden;
   overflow-x: hidden;
+  border-right: 3px ridge cyan;
 }
 
 .row{
@@ -63,5 +64,9 @@ body > nav > ul > li.name > h1 > a{
 #profile_img{
   border-radius: 38px;
   border: 2px ridge white;
+}
+
+#tweets_search{
+  border-radius: 20px;
 }
 
