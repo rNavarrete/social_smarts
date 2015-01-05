@@ -25,6 +25,7 @@ gem 'zurb-foundation'
 gem "skylight"
 gem 'whenever', :require => false
 gem 'twitter-text'
+gem "faraday", '~> 0.9.0'
 
 group :test, :development do
   gem 'pry'
