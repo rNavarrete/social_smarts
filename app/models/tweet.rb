@@ -19,19 +19,21 @@ class Tweet
   end
 
   def location_data
-    Faraday.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + tweet.user.location + '&key=' + 'AIzaSyCMPvf6SDEQMMwrlpu1jp9hz_F5XdV4RaE')
+      Faraday.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + tweet.user.location + '&key=' + 'AIzaSyATXzRGTK2cxm9jCDcBGwRSJPbMgByqrAc')
+    rescue TypeError
+      nil
   end
 
   def parsed_location_data
-    JSON.parse(location_data.body)
+    JSON.parse(location_data.body) if location_data
   end
 
   def latitude_from_profile
-    parsed_location_data["results"][0]["geometry"]["location"]["lat"] if parsed_location_data["results"][0] if parsed_location_data
+    parsed_location_data["results"][0]["geometry"]["location"]["lat"] if parsed_location_data
   end
 
   def longitude_from_profile
-    parsed_location_data["results"][0]["geometry"]["location"]["lng"] if parsed_location_data["results"][0] if parsed_location_data
+    parsed_location_data["results"][0]["geometry"]["location"]["lng"] if parsed_location_data
   end
 
   def latitude_from_tweet
@@ -51,6 +53,6 @@ class Tweet
                 end
   end
 
-  
+
 
 end
