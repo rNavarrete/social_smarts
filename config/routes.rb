@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :twitter_usermentions, only: [:index]
   resources :twitter_location, only: [:index]
   resources :scheduled_tweet, only: [:create]
-  resources :tracked_tweets, only: [:index, :create, :update]
+  resources :tracked_tweets, except: [:new, :edit, :show]
 
   get "/login" => redirect("/auth/twitter"), as: :login
   get '/auth/twitter/callback', to: 'sessions#create'

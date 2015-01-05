@@ -1,11 +1,13 @@
 class Tweet
+  include Twitter::Autolink
   attr_reader :tweet
+
   def initialize(tweet)
     @tweet = tweet
   end
 
   def text
-    tweet.text
+    auto_link(tweet.text, target_blank: true)
   end
 
   def user

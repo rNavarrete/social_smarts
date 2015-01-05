@@ -2,21 +2,23 @@
 
 
   <div class="large-3 columns">
-    <h3>Tweets</h3>
+    <h3 class="heading">Tweets</h3>
     <input id="tweets_search" class="search" type="text" placeholder="search timeline" ng-model="query">
     <ul>
-      <li ng-repeat-start="tweet in timeline | filter:query" style=" overflow: scroll;">
-        <div>{{tweet.screen_name}}</div>
-        <div>{{tweet.text}}</div>
-        <div>{{tweet.klout_score}}</div>
-        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
-      </li>
-      <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
+        <li ng-repeat-start="tweet in timeline | filter:query" style=" overflow: scroll;">
+          <div class="tweet_background">
+            <div><strong>{{tweet.screen_name}}</strong></div>
+            <div ng-bind-html="tweet.text"></div>
+            <div>{{tweet.klout_score}}</div>
+            <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+          </div>
+        </li>
+        <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
     </ul>
   </div>
 
   <div class="large-3 columns">
-    <h3>Mentions</h3>
+    <h3 class="heading">Mentions</h3>
     Sort by:
     <select ng-model="orderProp">
       <option value="-klout_score">Klout Score</option>
@@ -26,7 +28,7 @@
       <li ng-repeat-start="mention in usermentions | orderBy:orderProp">
         <div>{{mention.screen_name}}</div>
         <div>{{mention.klout_score}}</div>
-        <div>{{mention.text}}</div>
+        <div ng-bind-html="mention.text"></div>
         <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
       </li>
       <button class="button tiny" ng-repeat-end ng-click="track(mention)">Track</button>
@@ -34,7 +36,7 @@
   </div>
 
   <div class="large-3 columns">
-    <h3>Mentions Map</h3>
+    <h3 class="heading">Mentions Map</h3>
     <div id="map_canvas">
       <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
 
@@ -44,6 +46,15 @@
           </ui-gmap-windows>
         </ui-gmap-markers>
       </ui-gmap-google-map>
+<!-- <ul>
+  <li ng-repeat="tweet in timeline">{{tweet.tweet.text}}</li>
+</ul>
+  <div class="row">
+    <div class="large-6 columns">
+
+    </div>
+    <div class="large-6 columns"> -->
+
     </div>
     <ul>
   </div>
@@ -51,7 +62,7 @@
 
 
   <div class="large-2 columns">
-    <h3>Tracked Tweets</h3>
+    <h3 class="heading">Tracked Tweets</h3>
     <ul>
       <li ng-repeat-start="tweet in tracked">
         <div>{{tweet.screen_name}}</div>
@@ -62,27 +73,29 @@
       <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">unTrack</button>
     </ul>
 
-    <h3>tracked</h3>
-    <ul>
-      <li ng-repeat-start="tweet in unresolved">
-        <div>{{tweet.screen_name}}</div>
-        <div>{{tweet.klout_score}}</div>
-        <div>{{tweet.text}}</div>
-        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
-      </li>
-      <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">resolve</button>
-    </ul>
+    <h3 class="heading">tracked</h3>
+      <ul>
+        <li ng-repeat-start="tweet in unresolved">
+          <div>{{tweet.screen_name}}</div>
+          <div>{{tweet.klout_score}}</div>
+          <div ng-bind-html="tweet.text"></div>
+          <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+        </li>
+        <button class="button tiny" ng-click="deleteTrack(tweet)">delete</button>
+        <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">resolve</button>
+      </ul>
 
-    <!-- <h3>resolved</h3>
-    <ul>
-      <li ng-repeat-start="tweet in resolved">
-        <div>{{tweet.screen_name}}</div>
-        <div>{{tweet.klout_score}}</div>
-        <div>{{tweet.text}}</div>
-        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
-      </li>
-      <button class="button tiny" ng-repeat-end ng-click="retrack(tweet)">unresolve</button>
-    </ul> -->
+    <h3 class="heading">resolved</h3>
+      <ul>
+        <li ng-repeat-start="tweet in resolved">
+          <div>{{tweet.screen_name}}</div>
+          <div>{{tweet.klout_score}}</div>
+          <div ng-bind-html="tweet.text"></div>
+          <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+        </li>
+        <button class="button tiny" ng-click="deleteTrack(tweet)">delete</button>
+        <button class="button tiny" ng-repeat-end ng-click="retrack(tweet)">unresolve</button>
+      </ul>
   </div>
 
 

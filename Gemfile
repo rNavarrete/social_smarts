@@ -24,6 +24,7 @@ gem 'angularjs-rails'
 gem 'zurb-foundation'
 gem "skylight"
 gem 'whenever', :require => false
+gem 'twitter-text'
 
 group :test, :development do
   gem 'pry'
@@ -34,6 +35,7 @@ group :test, :development do
   gem 'binding_of_caller'
   gem 'jasmine'
   gem 'protractor-rails'
+  gem 'factory_girl_rails'
 end
 
 group :production do

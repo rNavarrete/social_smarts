@@ -22,7 +22,7 @@ class TrackedTweetsController < ApplicationController
   end
 
   def update
-    tracked_tweet = TrackedTweet.find(params[:id])
+    tracked_tweet = current_user.tracked_tweets.find(params[:id])
     tracked_tweet.status = params[:status]
     tracked_tweet.save
     respond_with tracked_tweet

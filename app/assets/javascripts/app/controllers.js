@@ -54,22 +54,29 @@ angular.module('socialsmartsApp.controllers', [])
   };
 
   $scope.untrack = function(tweet) {
-    var tracked_tweet = new TrackedTweet({
+    var resolved_track = new TrackedTweet({
       status: "resolved"
     });
-    tracked_tweet.$update({id: tweet.id}, function() {
+    resolved_track.$update({id: tweet.id}, function() {
       sortTrackedTweets();
     });
   };
 
   $scope.retrack = function(tweet) {
-    var untracked_tweet = new TrackedTweet({
+    var unresolved_track = new TrackedTweet({
       status: "unresolved"
     });
-    untracked_tweet.$update({id: tweet.id}, function() {
+    unresolved_track.$update({id: tweet.id}, function() {
       sortTrackedTweets();
     });
   };
+
+  $scope.deleteTrack = function(tweet) {
+    var tracked_tweet = new TrackedTweet;
+    tracked_tweet.$delete({id: tweet.id}, function() {
+      sortTrackedTweets();
+    })
+  }
 
   $http.get('/twitter_location.json').success(function(data) {
     var locale = data;

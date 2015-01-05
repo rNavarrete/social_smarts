@@ -6,6 +6,7 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,100italic|Josefin+Sans|Lilita+One' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMPvf6SDEQMMwrlpu1jp9hz_F5XdV4RaE"></script>
   <script type="text/javascript" src="http://hpneo.github.io/gmaps/gmaps.js"></script>
   <script type="text/javascript" src="https://hpneo.github.io/gmaps/prettify/prettify.js"></script>
@@ -16,10 +17,10 @@
 
 <body>
   <div class="row">
-    <div class="large-1 column">
+    <div class="large-1 column glass">
       <ul class="side-nav">
         <li><img id="profile_img" src="<%= current_user.image %>"></li>
-        <a id="simple-menu" href="#sidr"><i class="fa fa-twitter-square fa-5" style="font-size: 40px; color:cyan"></i></li>
+        <a id="simple-menu" href="#sidr"><i class="fa fa-twitter fa-5" style="font-size: 40px; color:cyan"></i></li>
         <li><a href="#">Link 2</a></li>
         <li><a href="#">Link 3</a></li>
         <li><a href="#">Link 4</a></li>
