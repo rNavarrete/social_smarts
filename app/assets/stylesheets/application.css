@@ -87,11 +87,15 @@ body > nav > ul > li.name > h1 > a{
 }
 
 .tweet_background{
-  border: 1px ridge black;
+  border: 1px groove black;
   border-radius: 6px;
 }
 
 .heading{
   font-family: 'Josefin Sans', sans-serif;
+}
+
+.first_row{
+  height: 45px;
 }
 
