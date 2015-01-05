@@ -8,7 +8,7 @@
       <h3 class="heading">Mentions Map</h3>
     </div>
     <div class="large-2 columns first_row">
-      <h3 class="heading">Tracked Tweets</h3>
+      <h3 class="heading" style="padding-left: 15px;">Tracked Tweets</h3>
     </div>
   </div>
 
@@ -61,7 +61,7 @@
     </div>
 
 
-    <div class="large-2 columns">
+    <div class="large-3 columns" style="margin-right: 16px;">
       <ul>
         <li ng-repeat-start="tweet in tracked">
         <h3 class="heading">tracked</h3>
@@ -72,9 +72,11 @@
         </li>
         <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">unTrack</button>
       </ul>
-
-      <ul>
-        <h3 class="heading">Unresolved</h3>
+      <div id="tracked-buttons">
+        <a href="" ng-click="showme=false">Resolved</a> | <a href="" ng-click="showme=true">Unresolved</a>
+      </div>
+      <ul ng-show="showme">
+        <h4 class="heading">Unresolved Tweets</h4>
         <li ng-repeat-start="tweet in unresolved">
           <div class="tweet_background">
             <div><strong>{{tweet.screen_name}}</strong></div>
@@ -87,8 +89,8 @@
         <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">resolve</button>
       </ul>
 
-      <ul>
-        <h3 class="heading">Resolved</h3>
+      <ul ng-hide="showme">
+        <h4 class="heading">Resolved Tweets</h4>
         <li ng-repeat-start="tweet in resolved">
             <div class="tweet_background">
               <div><strong>{{tweet.screen_name}}</strong></div>
