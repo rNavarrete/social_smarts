@@ -19,7 +19,7 @@ class Tweet
   end
 
   def location_data
-      Faraday.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + tweet.user.location + '&key=' + 'AIzaSyATXzRGTK2cxm9jCDcBGwRSJPbMgByqrAc')
+      Faraday.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + tweet.user.location + '&key=' + 'AIzaSyCkCtk5jlm5ZiT47hqEsqVlQ5u97k7my4A')
     rescue TypeError
       nil
   end

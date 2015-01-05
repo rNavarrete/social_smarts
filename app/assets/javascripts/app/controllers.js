@@ -71,7 +71,7 @@ angular.module('socialsmartsApp.controllers', [])
       sortTrackedTweets();
     })
   }
-  pollingService.startPolling('usermentions', '/twitter_usermentions.json', 60000, function(resp) {
+  pollingService.startPolling('usermentions', '/twitter_usermentions.json', 180000, function(resp) {
     $scope.usermentions = resp.data;
 
     $http.get('/twitter_location.json').success(function(data) {
@@ -104,7 +104,7 @@ angular.module('socialsmartsApp.controllers', [])
           };
 
         };
-      $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyATXzRGTK2cxm9jCDcBGwRSJPbMgByqrAc').success(function(data) {
+      $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyCkCtk5jlm5ZiT47hqEsqVlQ5u97k7my4A').success(function(data) {
       $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
       });
     });
