@@ -1,5 +1,4 @@
 // An example configuration file.
-require('coffee-script');
 
 exports.config = {
     // The address of a running selenium server.
