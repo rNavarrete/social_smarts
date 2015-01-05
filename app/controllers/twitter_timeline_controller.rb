@@ -4,6 +4,7 @@ class TwitterTimelineController < ApplicationController
 
   def index
     @tweets = current_user.fetch_tweets
+    # binding.pry
   end
 
   def create

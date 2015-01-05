@@ -11,6 +11,10 @@ angular.module('socialsmartsApp.controllers', [])
     $scope.usermentions = resp.data;
   });
 
+  pollingService.startPolling('cu_klout', '/currentuser_klout.json', 60000, function(resp) {
+    $scope.cu_klout = resp.data.cu_klout;
+  });
+
   $scope.orderProp = '-klout_score';
 
   $scope.tweet_message = "";

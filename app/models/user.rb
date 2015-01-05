@@ -23,11 +23,13 @@ class User < ActiveRecord::Base
   end
 
   def tweet(tweet)
+    # binding.pry
     client.update(tweet)
   end
 
   def fetch_tweets
     @tweets ||= client.home_timeline.map {|t| Tweet.new(t) }
+    # binding.pry
   end
 
   def fetch_mentions
@@ -43,6 +45,10 @@ class User < ActiveRecord::Base
     save!
     self
   end
+
+
+
+
 
   def location
     [client.verify_credentials.location]
