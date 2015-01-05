@@ -5,4 +5,5 @@ rvm:
 env:
     - DB=postgresql
 before_script:
+    - psql -c 'drop database social_smarts_test' -U postgres
     - psql -c 'create database social_smarts_test' -U postgres
