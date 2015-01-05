@@ -30,17 +30,19 @@
     </div>
 
     <div class="large-3 columns">
-      Sort by:
+      Sort:
       <select ng-model="orderProp">
         <option value="-klout_score">Klout Score</option>
         <option value="created_at">Date</option>
       </select>
       <ul>
         <li ng-repeat-start="mention in usermentions | orderBy:orderProp">
-         <div><strong>{{mention.screen_name}}</strong></div>
-          <div>{{mention.klout_score}}</div>
-          <div ng-bind-html="mention.text"></div>
-          <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
+          <div class="tweet_background">
+            <div><strong>{{mention.screen_name}}</strong></div>
+            <div>{{mention.klout_score}}</div>
+            <div ng-bind-html="mention.text"></div>
+            <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
+          </div>
         </li>
         <button class="button tiny" ng-repeat-end ng-click="track(mention)">Track</button>
       </ul>
@@ -59,10 +61,10 @@
     </div>
 
 
-
     <div class="large-2 columns">
       <ul>
         <li ng-repeat-start="tweet in tracked">
+        <h3 class="heading">tracked</h3>
           <div><strong>{{tweet.screen_name}}</strong></div>
           <div>{{tweet.klout_score}}</div>
           <div>{{tweet.text}}</div>
@@ -72,24 +74,28 @@
       </ul>
 
       <ul>
-        <h3 class="heading">tracked</h3>
-        <h3 class="heading">resolved</h3>
+        <h3 class="heading">Unresolved</h3>
         <li ng-repeat-start="tweet in unresolved">
-          <div><strong>{{tweet.screen_name}}</strong></div>
-          <div>{{tweet.klout_score}}</div>
-          <div ng-bind-html="tweet.text"></div>
-          <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+          <div class="tweet_background">
+            <div><strong>{{tweet.screen_name}}</strong></div>
+            <div>{{tweet.klout_score}}</div>
+            <div ng-bind-html="tweet.text"></div>
+            <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+          </div>
         </li>
         <button class="button tiny" ng-click="deleteTrack(tweet)">delete</button>
         <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">resolve</button>
       </ul>
 
       <ul>
+        <h3 class="heading">Resolved</h3>
         <li ng-repeat-start="tweet in resolved">
-          <div><strong>{{tweet.screen_name}}</strong></div>
-          <div>{{tweet.klout_score}}</div>
-          <div ng-bind-html="tweet.text"></div>
-          <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+            <div class="tweet_background">
+              <div><strong>{{tweet.screen_name}}</strong></div>
+              <div>{{tweet.klout_score}}</div>
+              <div ng-bind-html="tweet.text"></div>
+              <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+            </div>
         </li>
         <button class="button tiny" ng-click="deleteTrack(tweet)">delete</button>
         <button class="button tiny" ng-repeat-end ng-click="retrack(tweet)">unresolve</button>
