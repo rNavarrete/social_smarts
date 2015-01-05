@@ -29,7 +29,7 @@ class Tweet
   end
 
   def latitude_from_profile
-    parsed_location_data["results"][0]["geometry"]["location"]["lat"] if parsed_location_data
+    parsed_location_data["results"][0]["geometry"]["location"]["lat"] + rand if parsed_location_data
   end
 
   def longitude_from_profile
