@@ -97,5 +97,6 @@ body > nav > ul > li.name > h1 > a{
 
 .first_row{
   height: 45px;
+  overflow: hidden;
 }
 
