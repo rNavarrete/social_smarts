@@ -91,7 +91,7 @@ body > nav > ul > li.name > h1 > a{
 }
 
 .tweet_background{
-  border: 1px groove black;
+  box-shadow: 1px 1px 6px #888888;
   border-radius: 6px;
 }
 
@@ -110,4 +110,8 @@ ul {
 
 #tracked-buttons{
   margin-left: -3px;
+}
+
+#sidr{
+  background-image:url("grey1.png");
 }

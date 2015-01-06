@@ -16,7 +16,7 @@
     <div class="large-3 columns">
       <input id="tweets_search" class="search" type="text" placeholder="search timeline" ng-model="query">
       <ul>
-        <li ng-repeat-start="tweet in timeline | filter:query" style=" overflow: scroll;">
+        <li ng-repeat-start="tweet in timeline | filter:query">
           <div class="tweet_background">
             <div><strong>{{tweet.screen_name}}</strong></div>
             <div ng-bind-html="tweet.text"></div>
@@ -72,9 +72,9 @@
         <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">unTrack</button>
       </ul>
       <div id="tracked-buttons">
-        <a href="" ng-click="showme=false">Resolved</a> | <a href="" ng-click="showme=true">Unresolved</a>
+        <a href="" ng-click="showme=true">Resolved</a> | <a href="" ng-click="showme=false">Unresolved</a>
       </div>
-      <ul ng-show="showme">
+      <ul ng-hide="showme">
         <h4 class="heading">Unresolved Tweets</h4>
         <li ng-repeat-start="tweet in unresolved">
           <div class="tweet_background">
@@ -88,7 +88,7 @@
         <button class="button tiny" ng-repeat-end ng-click="untrack(tweet)">resolve</button>
       </ul>
 
-      <ul ng-hide="showme">
+      <ul ng-show="showme">
         <h4 class="heading">Resolved Tweets</h4>
         <li ng-repeat-start="tweet in resolved">
             <div class="tweet_background">
