@@ -23,15 +23,21 @@ class User < ActiveRecord::Base
   end
 
   def tweet(tweet)
+    # binding.pry
     client.update(tweet)
   end
 
   def fetch_tweets
     @tweets ||= client.home_timeline.map {|t| Tweet.new(t) }
+    # binding.pry
   end
 
   def fetch_mentions
     @mentions ||= client.mentions_timeline.map { |t| Tweet.new(t) }
+  end
+
+  def klout_score
+    KloutScore.new(self.uid).fetch_score
   end
 
   def update_auth_attrs(auth)
