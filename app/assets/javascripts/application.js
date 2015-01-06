@@ -5,9 +5,16 @@
 //= require angular-resource
 //= require angular-animate
 //= require angular-sanitize
+//= require foundation
 //= require_tree .
 
-//= require foundation
-$(function(){ 
-  $(document).foundation(); 
+$(function(){
+  $(document).foundation();
 });
+
+
+$(document).ready(function() {
+  $('#simple-menu').sidr();
+});
+
+
