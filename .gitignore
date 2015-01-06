@@ -17,7 +17,4 @@
 
 # Ignore application configuration
 /config/application.yml
-<<<<<<< HEAD
-=======
 /coverage
->>>>>>> 90b7944e473525c53569d56c9eec6ba034e1f423

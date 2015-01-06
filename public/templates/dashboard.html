@@ -10,6 +10,43 @@
     <div class="large-2 columns first_row">
       <h3 class="heading" style="padding-left: 15px;">Tracked Tweets</h3>
     </div>
+    <h3>My Klout Score</h3>
+    <div>{{current_user_klout}}</div>
+    <h3>Tweets</h3>
+    <ul>
+      <li ng-repeat-start="tweet in timeline | filter:query">
+        <div>{{tweet.screen_name}}</div>
+        <div ng-bind-html="tweet.text"></div>
+        <div>{{tweet.klout_score}}</div>
+        <div>{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
+      </li>
+      <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
+    </ul>
+    <h3>Mentions</h3>
+    Sort by:
+    <select ng-model="orderProp">
+      <option value="-klout_score">Klout Score</option>
+      <option value="created_at">Date</option>
+    </select>
+    <ul>
+      <li ng-repeat-start="mention in usermentions | orderBy:orderProp">
+        <div>{{mention.screen_name}}</div>
+        <div>{{mention.klout_score}}</div>
+        <div ng-bind-html="mention.text"></div>
+        <div>{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
+      </li>
+      <button class="button tiny" ng-repeat-end ng-click="track(mention)">Track</button>
+    </ul>
+  </div>
+<div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
+  <input type="text"  ng-model="tweet_message" placeholder="Post a Tweet" required></input>
+  <input type="submit" ng-click="sendTweet(tweet_message)" ng-disabled="disabled(tweet_message)"></input>
+  <h6>{{length(tweet_message)}}</h6>
+
+  <input type="text"  ng-model="stweet_message" placeholder="Schedule a Tweet" required></input>
+  <div id="date-time" style="display:inline-flex">
+    <input type="date" style="width: 60% margin-right: 5px;" min="{{defaultDate}}" ng-model="stweet_date"></input>
+    <input type="time" style="width: 90%" ng-model="stweet_time"></input>
   </div>
 
   <div class="row">
