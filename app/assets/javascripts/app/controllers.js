@@ -7,15 +7,17 @@ angular.module('socialsmartsApp.controllers', [])
     $scope.timeline = resp.data;
   });
 
-  pollingService.startPolling('usermentions', '/twitter_usermentions.json', 300000, function(resp) {
-    $scope.usermentions = resp.data;
-  });
+  // pollingService.startPolling('usermentions', '/twitter_usermentions.json', 300000, function(resp) {
+  //   $scope.usermentions = resp.data;
+  // });
 
   pollingService.startPolling('current_user_klout', '/currentuser_klout.json', 300000, function(resp) {
     $scope.current_user_klout = resp.data.current_user_klout;
   });
 
   $scope.orderProp = '-klout_score';
+
+  $scope.options = {styles: [{"featureType":"road","elementType":"labels","stylers":[{"visibility":"simplified"},{"lightness":20}]},{"featureType":"administrative.land_parcel","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#a1cdfc"},{"saturation":30},{"lightness":49}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"hue":"#f49935"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"hue":"#fad959"}]}]}
 
   $scope.tweet_message = "";
   var today = new Date();
@@ -77,7 +79,7 @@ angular.module('socialsmartsApp.controllers', [])
       sortTrackedTweets();
     })
   }
-  pollingService.startPolling('usermentions', '/twitter_usermentions.json', 180000, function(resp) {
+  pollingService.startPolling('usermentions', '/twitter_usermentions.json', 60000, function(resp) {
     $scope.usermentions = resp.data;
 
     $http.get('/twitter_location.json').success(function(data) {
@@ -110,7 +112,7 @@ angular.module('socialsmartsApp.controllers', [])
           };
 
         };
-      $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyCkCtk5jlm5ZiT47hqEsqVlQ5u97k7my4A').success(function(data) {
+      $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyATXzRGTK2cxm9jCDcBGwRSJPbMgByqrAc').success(function(data) {
       $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
       });
     });
