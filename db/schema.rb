@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150101185218) do
     t.string  "screen_name"
     t.integer "user_id"
     t.string  "created_at"
+    t.integer "klout_score"
     t.string  "status",      default: "unresolved", null: false
   end
 

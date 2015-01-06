@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
           } unless current_user
   end
 
-
   private
 
     def set_csrf_cookie_for_ng
