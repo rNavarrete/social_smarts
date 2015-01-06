@@ -10,7 +10,6 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
-gem 'redis'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -26,6 +25,7 @@ gem 'zurb-foundation'
 gem "skylight"
 gem 'whenever', :require => false
 gem 'twitter-text'
+gem "faraday", '~> 0.9.0'
 
 group :test, :development do
   gem 'pry'
