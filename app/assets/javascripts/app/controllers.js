@@ -112,7 +112,7 @@ angular.module('socialsmartsApp.controllers', [])
           };
 
         };
-      $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyATXzRGTK2cxm9jCDcBGwRSJPbMgByqrAc').success(function(data) {
+      $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyBIjVwl0qhgGMl8PI4AQi6zdn-_SzLCJBE').success(function(data) {
       $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
       });
     });
