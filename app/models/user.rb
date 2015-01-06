@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     @mentions ||= client.mentions_timeline.map { |t| Tweet.new(t) }
   end
 
+  def klout_score
+    KloutScore.new(self.uid).fetch_score
+  end
+
   def update_auth_attrs(auth)
     provider = auth.provider
     uid = auth.uid
@@ -45,10 +49,6 @@ class User < ActiveRecord::Base
     save!
     self
   end
-
-
-
-
 
   def location
     [client.verify_credentials.location]

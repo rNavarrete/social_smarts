@@ -11,7 +11,6 @@ class Tweet
   end
 
   def user
-    # binding.pry
     tweet.user
   end
 
@@ -20,7 +19,7 @@ class Tweet
   end
 
   def user_klout_score
-    @klout ||= KloutScore.new(user.id).score
+    @klout ||= KloutScore.new(user.id).fetch_score
   end
 
 end
