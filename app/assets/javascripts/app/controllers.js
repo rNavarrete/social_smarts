@@ -87,9 +87,7 @@ angular.module('socialsmartsApp.controllers', [])
   pollingService.startPolling('usermentions', '/twitter_usermentions.json', 60000, function(resp) {
     $scope.usermentions = resp.data;
 
-    $http.get('/twitter_location.json').success(function(data) {
 
-      var locale = data;
 
       console.log($scope.usermentions)
         $scope.mentions = []
@@ -113,15 +111,20 @@ angular.module('socialsmartsApp.controllers', [])
 
               $scope.mentions.push(ret);
             }  else {
-
             };
-
-          };
-          $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyCkCtk5jlm5ZiT47hqEsqVlQ5u97k7my4A').success(function(data) {
-            $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
-          });
-        });
+        };
       });
+
+  $http.get('/twitter_location.json').success(function(data) {
+    var locale = data;
+
+    $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyCkCtk5jlm5ZiT47hqEsqVlQ5u97k7my4A').success(function(data) {
+      $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
+    });
+  });
+
+
+
 
   $scope.sendTweet = function(tweet_message) {
     $http.post('/twitter_timeline.json', {tweet: tweet_message})
