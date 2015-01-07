@@ -10,7 +10,7 @@ RSpec.describe TwitterTimelineController, type: :controller do
 
   describe 'index' do
     it 'returns an array of tweets' do
-      VCR.use_cassette("user") do
+      VCR.use_cassette("tweets") do
         get :index, format: :json
       end
 
@@ -23,7 +23,7 @@ RSpec.describe TwitterTimelineController, type: :controller do
     it "posts a tweet" do
     end
   end
-  
+
   private
 
     def last_tweet_text
