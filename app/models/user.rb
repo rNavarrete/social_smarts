@@ -55,7 +55,11 @@ class User < ActiveRecord::Base
   end
 
   def location
-    [client.verify_credentials.location]
+    unless client.verify_credentials.location.instance_of? Twitter::NullObject
+      [client.verify_credentials.location]
+    else
+      [nil]
+    end
   end
 
   private

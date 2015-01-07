@@ -91,8 +91,6 @@ angular.module('socialsmartsApp.controllers', [])
         for (var i = 0; i < $scope.usermentions.length; i++) {
           var ret;
 
-          console.log ($scope.usermentions[i])
-
           if ($scope.usermentions[i].tweet_data.tweet.place) {
             ret = {idKey: i, latitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][1] + (Math.random() * (0.01 - 0.05) + 0.01),
               longitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][0], title: $scope.usermentions[i].text, show: false, author: $scope.usermentions[i].screen_name};
@@ -120,10 +118,20 @@ angular.module('socialsmartsApp.controllers', [])
 
   $http.get('/twitter_location.json').success(function(data) {
     var locale = data;
+    if (locale[0]){
 
-    $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyCkCtk5jlm5ZiT47hqEsqVlQ5u97k7my4A').success(function(data) {
-      $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
-    });
+          $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyATXzRGTK2cxm9jCDcBGwRSJPbMgByqrAc').success(function(data) {
+            if (data.results[0]){
+              $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
+            } else {
+              $scope.map = { center: { latitude: 39.75015, longitude: -104.99987 }, zoom: 8 };
+            }
+          });
+    } else {
+      $http.get('https://maps.googleapis.com/maps/api/geocode/json?key=' + 'AIzaSyATXzRGTK2cxm9jCDcBGwRSJPbMgByqrAc').success(function(data) {
+        $scope.map = { center: { latitude: 39.75015, longitude: -104.99987 }, zoom: 8 };
+      });
+    }
   });
 
 
