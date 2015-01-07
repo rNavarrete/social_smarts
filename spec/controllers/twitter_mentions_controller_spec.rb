@@ -3,12 +3,13 @@ RSpec.describe TwitterMentionsController, type: :controller do
 
   before do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return user
-    VCR.insert_cassette("mentions")
   end
 
   describe 'index' do
     it 'returns an array of mentions' do
-      get :index, format: :json
+      VCR.use_cassette("mentions") do
+        get :index, format: :json
+      end
 
       expect(response.status).to eq 200
       expect(parsed_json_response_body.last['tweet']['text']).to eq(last_tweet_text)
