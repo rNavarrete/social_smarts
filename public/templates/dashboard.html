@@ -45,7 +45,7 @@
         <li ng-repeat-start="mention in usermentions | orderBy:orderProp| filter:mentionsQuery">
           <div class="tweet_background">
             <div><strong id="tweet_headings">{{mention.screen_name}}</strong></div>
-            <div class="tweet_text">{{mention.klout_score}}</div>
+            <div class="tweet_text">Klout: {{mention.klout_score}}</div>
             <div  class="tweet_text" ng-bind-html="mention.text"></div>
             <div class="tweet_text">{{mention.created_at | date:'M/d/yy h:mm a' }}</div>
           </div>
