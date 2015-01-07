@@ -20,7 +20,7 @@ angular.module('socialsmartsApp.controllers', [])
 
 
   $scope.orderProp = '-klout_score';
-  $scope.options = {styles: [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]}
+  $scope.options = {styles: [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]};
 
 
   $scope.tweet_message = "";
@@ -29,22 +29,22 @@ angular.module('socialsmartsApp.controllers', [])
   var mm = today.getMonth() + 1;
   var yyyy = today.getFullYear();
   $scope.defaultDate = yyyy + "-" + mm + "-" + dd;
-  $scope.stweet_time = new Date(1970, 0, 1, 14, 57, 0)
-  $scope.stweet_date = today
+  $scope.stweet_time = new Date(1970, 0, 1, 14, 57, 0);
+  $scope.stweet_date = today;
 
   $scope.disabled = function(tweet_message) {
-    if (tweet_message == null || tweet_message.length > 140 || tweet_message.length < 1) {
+    if (tweet_message === null || tweet_message.length > 140 || tweet_message.length < 1) {
       return true;
     }
   };
 
   $scope.length = function(tweet_message) {
-    if (tweet_message == null){
-      return 0
+    if (tweet_message === null){
+      return 0;
     } else {
-      return tweet_message.length
+      return tweet_message.length;
     }
-  }
+  };
 
   $scope.track = function(tweet) {
     var tracked_tweet = new TrackedTweet({
@@ -78,11 +78,11 @@ angular.module('socialsmartsApp.controllers', [])
   };
 
   $scope.deleteTrack = function(tweet) {
-    var tracked_tweet = new TrackedTweet;
+    var tracked_tweet = new TrackedTweet();
     tracked_tweet.$delete({id: tweet.id}, function() {
       sortTrackedTweets();
-    })
-  }
+    });
+  };
 
   pollingService.startPolling('usermentions', '/twitter_usermentions.json', 60000, function(resp) {
     $scope.usermentions = resp.data;
@@ -91,12 +91,13 @@ angular.module('socialsmartsApp.controllers', [])
 
       var locale = data;
 
-      console.log($scope.usermentions)
-        $scope.mentions = []
+        $scope.mentions = [];
         for (var i = 0; i < $scope.usermentions.length; i++) {
+          var ret;
+
           if ($scope.usermentions[i].tweet_data.tweet.place) {
-            var ret = {idKey: i, latitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][1] + (Math.random() * (0.01 - 0.05) + 0.01),
-              longitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][0], title: $scope.usermentions[i].text, show: false, author: $scope.usermentions[i].screen_name}
+            ret = {idKey: i, latitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][1] + (Math.random() * (0.01 - 0.05) + 0.01),
+              longitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][0], title: $scope.usermentions[i].text, show: false, author: $scope.usermentions[i].screen_name};
 
               ret.onClick = function() {
                 ret.show = !ret.show;
@@ -104,8 +105,8 @@ angular.module('socialsmartsApp.controllers', [])
 
               $scope.mentions.push(ret);
             } else if ($scope.usermentions[i].latitude_from_profile){
-            var ret = {idKey: i, latitude: $scope.usermentions[i].latitude_from_profile,
-              longitude: $scope.usermentions[i].longitude_from_profile, title: $scope.usermentions[i].text, show: false, author: $scope.usermentions[i].screen_name}
+              ret = {idKey: i, latitude: $scope.usermentions[i].latitude_from_profile,
+              longitude: $scope.usermentions[i].longitude_from_profile, title: $scope.usermentions[i].text, show: false, author: $scope.usermentions[i].screen_name};
 
               ret.onClick = function() {
                 ret.show = !ret.show;
@@ -114,9 +115,9 @@ angular.module('socialsmartsApp.controllers', [])
               $scope.mentions.push(ret);
             }  else {
 
-            };
+            }
 
-          };
+          }
           $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyCkCtk5jlm5ZiT47hqEsqVlQ5u97k7my4A').success(function(data) {
             $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
           });
@@ -146,7 +147,7 @@ angular.module('socialsmartsApp.controllers', [])
         $scope.messages = null;
       }, [3000]);
     });
-  }
+  };
 
   $scope.sendStweet = function(tweet_message, tweet_time, tweet_date) {
     $http.post('/scheduled_tweet.json', {tweet: tweet_message, time: tweet_time, date: tweet_date})
@@ -171,11 +172,11 @@ angular.module('socialsmartsApp.controllers', [])
         $scope.messages = null;
       }, [3000]);
     });
-  }
+  };
 
   function sortTrackedTweets() {
     TrackedTweet.query(function(resp) {
-      var tracked_tweets = resp
+      var tracked_tweets = resp;
       $scope.unresolved = tracked_tweets.filter(function(v) {
         return v.status === "unresolved";
       });
