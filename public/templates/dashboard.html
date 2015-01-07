@@ -26,7 +26,7 @@
           <div class="tweet_background">
             <div><strong id="tweet_headings">{{tweet.screen_name}}</strong></div>
             <div class="tweet_text" ng-bind-html="tweet.text"></div>
-            <div class="tweet_text">{{tweet.klout_score}}</div>
+            <div class="tweet_text">Klout: {{tweet.klout_score}}</div>
             <div class="tweet_text">{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
           </div>
         </li>
@@ -73,7 +73,7 @@
         <li ng-repeat-start="tweet in tracked">
         <h3 class="heading">tracked</h3>
           <div><strong id="tweet_headings">{{tweet.screen_name}}</strong></div>
-          <div class="tweet_text">{{tweet.klout_score}}</div>
+          <div class="tweet_text">Klout: {{tweet.klout_score}}</div>
           <div class="tweet_text">{{tweet.text}}</div>
           <div class="tweet_text">{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
         </li>
@@ -87,7 +87,7 @@
         <li ng-repeat-start="tweet in unresolved | filter:trackedQuery">
           <div class="tweet_background">
             <div><strong id="tweet_headings">{{tweet.screen_name}}</strong></div>
-            <div class="tweet_text">{{tweet.klout_score}}</div>
+            <div class="tweet_text">Klout: {{tweet.klout_score}}</div>
             <div class="tweet_text" ng-bind-html="tweet.text"></div>
             <div class="tweet_text" >{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
           </div>
@@ -101,7 +101,7 @@
         <li ng-repeat-start="tweet in resolved | filter:trackedQuery">
             <div class="tweet_background">
               <div><strong id="tweet_headings">{{tweet.screen_name}}</strong></div>
-              <div class="tweet_text">{{tweet.klout_score}}</div>
+              <div class="tweet_text">Klout: {{tweet.klout_score}}</div>
               <div class="tweet_text" ng-bind-html="tweet.text"></div>
               <div class="tweet_text">{{tweet.created_at | date:'M/d/yy h:mm a' }}</div>
             </div>
