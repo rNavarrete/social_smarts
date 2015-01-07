@@ -159,7 +159,6 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    redis (3.2.0)
     ref (1.0.5)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
@@ -270,7 +269,6 @@ DEPENDENCIES
   protractor-rails
   pry
   rails (= 4.1.6)
-  redis
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

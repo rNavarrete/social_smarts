@@ -20,11 +20,20 @@
       </li>
       <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
     </ul>
+    <h3>Followers</h3>
+    <ul>
+      <li ng-repeat-start="follower in followers | filter:query">
+        <div>{{follower.screen_name}}</div>
+        <div>{{follower.klout_score}}</div>
+        <div>{{follower.created_at | date:'M/d/yy h:mm a' }}</div>
+      </li>
+      <button class="button tiny" ng-repeat-end ng-click="track(tweet)">Track</button>
+    </ul>
     <h3>Mentions</h3>
     Sort by:
     <select ng-model="orderProp">
       <option value="-klout_score">Klout Score</option>
-      <option value="created_at">Date</option>
+      <option value="-created_at">Date</option>
     </select>
     <ul>
       <li ng-repeat-start="mention in usermentions | orderBy:orderProp">

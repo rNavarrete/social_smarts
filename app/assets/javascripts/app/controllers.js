@@ -7,6 +7,10 @@ angular.module('socialsmartsApp.controllers', [])
     $scope.timeline = resp.data;
   });
 
+  pollingService.startPolling('followers', '/twitter_followers.json', 300000, function(resp) {
+    $scope.followers = resp.data;
+  });
+
   pollingService.startPolling('usermentions', '/twitter_usermentions.json', 300000, function(resp) {
     $scope.usermentions = resp.data;
   });
