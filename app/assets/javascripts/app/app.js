@@ -3,7 +3,7 @@ angular.module('socialsmartsApp', ['ngRoute', 'socialsmartsApp.services', 'socia
   $routeProvider
     .when('/dashboard', {
       templateUrl: '/templates/dashboard.html',
-      controller: 'DashboardController',
+      controller: 'DashboardController'
     })
     .otherwise({
       redirectTo: '/dashboard'

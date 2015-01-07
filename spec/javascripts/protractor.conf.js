@@ -1,5 +1,4 @@
 // An example configuration file.
-require('coffee-script');
 
 exports.config = {
     // The address of a running selenium server.
@@ -12,7 +11,7 @@ exports.config = {
 
     // Spec patterns are relative to the current working directly when
     // protractor is called.
-    specs: ['example_spec.js ', 'protractor_specs/**/*.js', 'protractor_specs/**/*.coffee'],
+    specs: ['protractor_specs/**/*.js'],
 
     baseUrl: 'http://localhost:4000',
 
