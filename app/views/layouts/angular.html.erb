@@ -5,7 +5,6 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,100italic|Josefin+Sans|Lilita+One|Pacifico' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMPvf6SDEQMMwrlpu1jp9hz_F5XdV4RaE"></script>
   <script type="text/javascript" src="http://hpneo.github.io/gmaps/gmaps.js"></script>
@@ -22,7 +21,7 @@
       <ul class="side-nav">
         <li><img id="profile_img" src="<%= current_user.image %>"></li>
         <li style="color:white;margin-bottom: 0px;"><img style="width:32px;" src="/assets/klout.png">:{{current_user_klout}}</li>
-        <a id="simple-menu" href="#sidr" style="color:white">Menu</a>
+        <li><a id="simple-menu" href="#sidr" style="color:white;padding-left:4px">Menu</a></li>
         <% if current_user %>
           <li style="color:white"><%= link_to "Logout", logout_path, {style: "color:white; padding-left:4px;", method: :delete} %></li>
         <% end %>
