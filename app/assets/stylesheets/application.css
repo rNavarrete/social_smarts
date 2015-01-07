@@ -93,7 +93,8 @@ body > nav > ul > li.name > h1 > a{
 .tweet_background{
   background-color: white;
   box-shadow: 1px 1px 6px #888888;
-  border-radius: 6px;
+  border-top: 12px ridge black;
+
 }
 
 .heading{
@@ -120,4 +121,18 @@ ul {
 .tweet_fields{
   border-radius: 28px;
   background-color: white;
+}
+
+.button{
+  border-radius: 12px;
+  background-color: dimgrey;
+  border: 2px ridge white;
+}
+
+#tweet_headings{
+  padding-left: 6px;
+}
+
+.tweet_text{
+  margin: 5px;
 }
