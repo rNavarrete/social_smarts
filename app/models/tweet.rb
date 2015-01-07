@@ -19,9 +19,9 @@ class Tweet
   end
 
   def location_data
+    unless tweet.user.location.is_a? Twitter::NullObject
       Faraday.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + tweet.user.location + '&key=' + 'AIzaSyBIjVwl0qhgGMl8PI4AQi6zdn-_SzLCJBE')
-    rescue TypeError
-      nil
+    end
   end
 
   def parsed_location_data
