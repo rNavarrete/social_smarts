@@ -3,19 +3,21 @@ angular.module('socialsmartsApp.controllers', [])
 
   sortTrackedTweets();
 
-  pollingService.startPolling('timeline', '/twitter_timeline.json', 300000, function(resp) {
+  var fiveMin = 300000;
+
+  pollingService.startPolling('timeline', '/twitter_timeline.json', fiveMin, function(resp) {
     $scope.timeline = resp.data;
   });
 
-  pollingService.startPolling('followers', '/twitter_followers.json', 300000, function(resp) {
+  pollingService.startPolling('followers', '/twitter_followers.json', fiveMin, function(resp) {
     $scope.followers = resp.data;
   });
 
-  pollingService.startPolling('usermentions', '/twitter_usermentions.json', 300000, function(resp) {
+  pollingService.startPolling('usermentions', '/twitter_usermentions.json', fiveMin, function(resp) {
     $scope.usermentions = resp.data;
   });
 
-  pollingService.startPolling('current_user_klout', '/currentuser_klout.json', 300000, function(resp) {
+  pollingService.startPolling('current_user_klout', '/currentuser_klout.json', fiveMin, function(resp) {
     $scope.current_user_klout = resp.data.current_user_klout;
   });
 
