@@ -13,10 +13,6 @@ angular.module('socialsmartsApp.controllers', [])
     $scope.followers = resp.data;
   });
 
-  pollingService.startPolling('usermentions', '/twitter_usermentions.json', fiveMin, function(resp) {
-    $scope.usermentions = resp.data;
-  });
-
   pollingService.startPolling('current_user_klout', '/currentuser_klout.json', fiveMin, function(resp) {
     $scope.current_user_klout = resp.data.current_user_klout;
   });
@@ -88,28 +84,44 @@ angular.module('socialsmartsApp.controllers', [])
     })
   }
 
-  $http.get('/twitter_location.json').success(function(data) {
-    var locale = data;
-    $http.get('/twitter_mentions.json').success(function(atmentions) {
+  pollingService.startPolling('usermentions', '/twitter_usermentions.json', 60000, function(resp) {
+    $scope.usermentions = resp.data;
+
+    $http.get('/twitter_location.json').success(function(data) {
+
+      var locale = data;
+
+      console.log($scope.usermentions)
       $scope.mentions = []
-      for (var i = 0; i < atmentions.length; i++) {
-        if (atmentions[i].tweet.place) {
-          var ret = {idKey: i, latitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][1],
-            longitude: atmentions[i].tweet.place.bounding_box.coordinates[0][0][0], title: atmentions[i].tweet.text, show: false, author: atmentions[i].tweet.user.screen_name
-          };
+      for (var i = 0; i < $scope.usermentions.length; i++) {
+        if ($scope.usermentions[i].tweet_data.tweet.place) {
+          var ret = {idKey: i, latitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][1] + Math.random(),
+            longitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][0], title: $scope.usermentions[i].text, show: false, author: $scope.usermentions[i].screen_name}
 
-          ret.onClick = function() {
-            ret.show = !ret.show;
-          };
+            ret.onClick = function() {
+              ret.show = !ret.show;
+            };
 
-          $scope.mentions.push(ret);
-        }
-      }
-    });
-    $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyCMPvf6SDEQMMwrlpu1jp9hz_F5XdV4RaE').success(function(data) {
-    $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
-    });
-  });
+            $scope.mentions.push(ret);
+          } else if ($scope.usermentions[i].latitude_from_profile){
+            var ret = {idKey: i, latitude: $scope.usermentions[i].latitude_from_profile,
+              longitude: $scope.usermentions[i].longitude_from_profile, title: $scope.usermentions[i].text, show: false, author: $scope.usermentions[i].screen_name}
+
+              ret.onClick = function() {
+                ret.show = !ret.show;
+              };
+
+              $scope.mentions.push(ret);
+            }  else {
+
+            };
+
+          };
+          $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyBIjVwl0qhgGMl8PI4AQi6zdn-_SzLCJBE').success(function(data) {
+            $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
+          });
+        });
+      });
 
   $scope.sendTweet = function(tweet_message) {
     $http.post('/twitter_timeline.json', {tweet: tweet_message})
