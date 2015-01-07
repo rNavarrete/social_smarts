@@ -36,14 +36,19 @@ class User < ActiveRecord::Base
   end
 
   def fetch_followers
-    # Rails.cache.fetch("twitter_followers#{uid}", expires_in: 24.hours) do
-      @followers ||= client.followers.map { |f| f }
-    # end
-    # binding.pry
+    Rails.cache.fetch("twitter_followers#{uid}", expires_in: 24.hours) do
+      @followers = client.followers.map do |f|
+        f.class.module_eval { attr_accessor :klout_score}
+        f.klout_score = User::klout_score(f.id)
+        f
+      end
+      @followers.sort! { |a,b| b.klout_score <=> a.klout_score }
+      @followers[0..19]
+    end
   end
 
-  def klout_score
-      KloutScore.new(uid).fetch_score
+  def self.klout_score(twitter_uid)
+    KloutScore.new(twitter_uid).fetch_score
   end
 
   def update_auth_attrs(auth)
