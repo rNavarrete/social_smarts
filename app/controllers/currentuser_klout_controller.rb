@@ -3,7 +3,7 @@ class CurrentuserKloutController < ApplicationController
   before_filter :require_signin!
 
   def index
-    @klout_score = current_user.klout_score
+    @klout_score = User::klout_score(current_user.uid)
   end
 
 end
