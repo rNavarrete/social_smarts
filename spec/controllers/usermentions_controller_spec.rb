@@ -5,6 +5,7 @@ RSpec.describe TwitterUsermentionsController, type: :controller do
 
   before do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return user
+    allow_any_instance_of(Tweet).to receive(:user_klout_score).and_return 1
   end
 
   describe 'index' do
