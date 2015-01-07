@@ -1,23 +1,27 @@
 angular.module('socialsmartsApp.controllers', [])
-.controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService, $q) {
+.controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService) {
 
   sortTrackedTweets();
 
-  pollingService.startPolling('timeline', '/twitter_timeline.json', 300000, function(resp) {
+  var fiveMin = 300000;
+
+  pollingService.startPolling('timeline', '/twitter_timeline.json', fiveMin, function(resp) {
     $scope.timeline = resp.data;
   });
 
-  // pollingService.startPolling('usermentions', '/twitter_usermentions.json', 300000, function(resp) {
-  //   $scope.usermentions = resp.data;
-  // });
+  pollingService.startPolling('followers', '/twitter_followers.json', fiveMin, function(resp) {
+    $scope.followers = resp.data;
+  });
 
-  pollingService.startPolling('current_user_klout', '/currentuser_klout.json', 300000, function(resp) {
+  pollingService.startPolling('current_user_klout', '/currentuser_klout.json', fiveMin, function(resp) {
     $scope.current_user_klout = resp.data.current_user_klout;
   });
 
-  $scope.orderProp = '-klout_score';
 
-  $scope.options = {styles: [{"featureType":"road","elementType":"labels","stylers":[{"visibility":"simplified"},{"lightness":20}]},{"featureType":"administrative.land_parcel","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#a1cdfc"},{"saturation":30},{"lightness":49}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"hue":"#f49935"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"hue":"#fad959"}]}]}
+
+  $scope.orderProp = '-klout_score';
+  $scope.options = {styles: [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]}
+
 
   $scope.tweet_message = "";
   var today = new Date();
@@ -79,6 +83,7 @@ angular.module('socialsmartsApp.controllers', [])
       sortTrackedTweets();
     })
   }
+
   pollingService.startPolling('usermentions', '/twitter_usermentions.json', 60000, function(resp) {
     $scope.usermentions = resp.data;
 
@@ -107,16 +112,16 @@ angular.module('socialsmartsApp.controllers', [])
               };
 
               $scope.mentions.push(ret);
-          }  else {
+            }  else {
+
+            };
 
           };
-
-        };
-      $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyBIjVwl0qhgGMl8PI4AQi6zdn-_SzLCJBE').success(function(data) {
-      $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
+          $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + locale[0] + '&key=' + 'AIzaSyCkCtk5jlm5ZiT47hqEsqVlQ5u97k7my4A').success(function(data) {
+            $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 8 };
+          });
+        });
       });
-    });
-  });
 
   $scope.sendTweet = function(tweet_message) {
     $http.post('/twitter_timeline.json', {tweet: tweet_message})
