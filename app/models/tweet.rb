@@ -29,11 +29,23 @@ class Tweet
   end
 
   def latitude_from_profile
-    parsed_location_data["results"][0]["geometry"]["location"]["lat"] + rand if parsed_location_data
+    coordinates = Rails.cache.read(tweet.user.location)
+
+    unless coordinates
+      coordinates = parsed_location_data["results"][0]["geometry"]["location"]
+      Rails.cache.write(tweet.user.location, coordinates)
+    end
+    coordinates["lat"]
   end
 
   def longitude_from_profile
-    parsed_location_data["results"][0]["geometry"]["location"]["lng"] if parsed_location_data
+    coordinates = Rails.cache.read(tweet.user.location)
+
+    unless coordinates
+      coordinates = parsed_location_data["results"][0]["geometry"]["location"]
+      Rails.cache.write(tweet.user.location, coordinates)
+    end
+    coordinates["lng"]
   end
 
   def latitude_from_tweet
