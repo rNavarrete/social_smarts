@@ -3,15 +3,11 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first
-    user ? user.update_auth_attrs(auth) : create do |user|
-                                            user.provider = auth.provider
-                                            user.image = auth.info.image
-                                            user.uid = auth.uid
-                                            user.name = auth.info.name
-                                            user.oauth_token = auth.credentials.token
-                                            user.oauth_secret = auth.credentials.secret
-                                            user.save!
-                                          end
+    user ? user.update_auth_attrs(auth) : create_with_auth(auth)
+  end
+
+  def self.klout_score(twitter_uid)
+    KloutScore.new(twitter_uid).fetch_score
   end
 
   def client
@@ -47,10 +43,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.klout_score(twitter_uid)
-    KloutScore.new(twitter_uid).fetch_score
-  end
-
   def update_auth_attrs(auth)
     update_attributes(
       provider: auth.provider,
@@ -65,5 +57,18 @@ class User < ActiveRecord::Base
   def location
     [client.verify_credentials.location]
   end
+
+  private
+
+    def self.create_with_auth(auth)
+      create do |user|
+        user.provider = auth.provider
+        user.image = auth.info.image
+        user.uid = auth.uid
+        user.name = auth.info.name
+        user.oauth_token = auth.credentials.token
+        user.oauth_secret = auth.credentials.secret
+      end
+    end
 
 end
