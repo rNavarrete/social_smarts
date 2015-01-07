@@ -6,7 +6,7 @@ class KloutScore
 
 
   def fetch_score
-    Rails.cache.fetch("#{twitter_uid}", expires_in: 24.hours) do
+    Rails.cache.fetch("klout_score_#{twitter_uid}", expires_in: 24.hours) do
       begin
         Klout::TwUser.new(twitter_uid).score.score.to_i
       rescue JSON::ParserError, Klout::NotFound => ex
