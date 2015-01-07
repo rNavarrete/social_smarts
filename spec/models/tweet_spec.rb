@@ -1,7 +1,7 @@
 require 'ostruct'
 
 RSpec.describe Tweet do
-  let(:tweet) { Tweet.new(OpenStruct.new(text: "a tweet", 
+  let(:tweet) { Tweet.new(OpenStruct.new(text: "a tweet",
                                          user: OpenStruct.new(screen_name: "lukeaiken", id: 6253282),
                                          created_at: "today")) }
 
