@@ -33,13 +33,13 @@ angular.module('socialsmartsApp.controllers', [])
   $scope.stweet_date = today;
 
   $scope.disabled = function(tweet_message) {
-    if (tweet_message === null || tweet_message.length > 140 || tweet_message.length < 1) {
+    if (tweet_message == null || tweet_message.length > 140 || tweet_message.length < 1) {
       return true;
     }
   };
 
   $scope.length = function(tweet_message) {
-    if (tweet_message === null){
+    if (tweet_message == null){
       return 0;
     } else {
       return tweet_message.length;
