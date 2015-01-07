@@ -19,7 +19,7 @@
   overflow-x: hidden; /* hides the horizontal scroll bar */
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-/*  background-image:url("square.png");*/
+  background-image:url("plaid.png");
 
 }
 
@@ -43,20 +43,7 @@
   height: 1025px;
   border-right: 2px ridge white;
   width: 6%;
- /* overflow-y: hidden;
-  overflow-x: hidden;
-  background: rgba(242,246,248,1);
-  background: rgba(134,174,204,1);
-  background: rgba(134,174,204,1);
-background: rgba(134,174,204,0.48);
-background: -moz-linear-gradient(left, rgba(134,174,204,0.48) 0%, rgba(134,174,204,0.49) 0%, rgba(54,95,122,0.49) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(134,174,204,0.48)), color-stop(0%, rgba(134,174,204,0.49)), color-stop(100%, rgba(54,95,122,0.49)));
-background: -webkit-linear-gradient(left, rgba(134,174,204,0.48) 0%, rgba(134,174,204,0.49) 0%, rgba(54,95,122,0.49) 100%);
-background: -o-linear-gradient(left, rgba(134,174,204,0.48) 0%, rgba(134,174,204,0.49) 0%, rgba(54,95,122,0.49) 100%);
-background: -ms-linear-gradient(left, rgba(134,174,204,0.48) 0%, rgba(134,174,204,0.49) 0%, rgba(54,95,122,0.49) 100%);
-background: linear-gradient(to right, rgba(134,174,204,0.48) 0%, rgba(134,174,204,0.49) 0%, rgba(54,95,122,0.49) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#86aecc', endColorstr='#365f7a', GradientType=1 );*/*/
-
+  padding-left: 12px;
 }
 
 .row{
@@ -91,6 +78,7 @@ body > nav > ul > li.name > h1 > a{
 }
 
 .tweet_background{
+  background-color: white;
   box-shadow: 1px 1px 6px #888888;
   border-radius: 6px;
 }
@@ -114,4 +102,9 @@ ul {
 
 #sidr{
   background-image:url("grey1.png");
+}
+
+.tweet_fields{
+  border-radius: 28px;
+  background-color: white;
 }

@@ -16,32 +16,51 @@
 
 
 <body ng-controller="DashboardController">
+
   <div class="row">
     <div class="large-1 column glass">
       <ul class="side-nav">
         <li><img id="profile_img" src="<%= current_user.image %>"></li>
-        <a id="simple-menu" href="#sidr"><i class="fa fa-twitter fa-5" style="font-size: 15px; color:cyan">tweet</i></a>
+        <li style="color:white;margin-bottom: 0px;"><img style="width:32px;" src="/assets/klout.png">:{{current_user_klout}}</li>
+        <a id="simple-menu" href="#sidr"><i class="fa fa-twitter fa-5" style="font-size: 15px; color:cyan; padding-left: 4px;">Menu</i></a>
       </ul>
     </div>
 
 
-
-
     <div ng-view></div>
+
     <div id="sidr">
+      <div  data-alert id="messages" class="alert-box alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
+      <h1>Post a Tweet</h1>
+      <input class="tweet_fields" type="text"  ng-model="tweet_message" placeholder="enter tweet" required></input>
+      <input class="button tiny alert" type="submit" ng-click="sendTweet(tweet_message)" ng-disabled="disabled(tweet_message)"></input> Charaters: {{length(tweet_message)}}
 
-    <div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
-    <input type="text"  ng-model="tweet_message" placeholder="Post a Tweet" required></input>
-    <input type="submit" ng-click="sendTweet(tweet_message)" ng-disabled="disabled(tweet_message)"></input>
-    <h6>Charaters: {{length(tweet_message)}}</h6>
+      <h1>Schedule a Tweet</h1>
+      <input class="tweet_fields" type="text"  ng-model="stweet_message" placeholder="schedule a tweet" required></input>
+      <div id="date-time">
+        <input type="date" min="{{defaultDate}}" ng-model="stweet_date"></input>
+        <input type="time" ng-model="stweet_time"></input>
+      </div>
+      <input class="button tiny alert" type="submit" ng-click="sendStweet(stweet_message, stweet_time, stweet_date)" ng-disabled="disabled(stweet_message)"></input> Characters: {{length(stweet_message)}}
 
-    <input type="text"  ng-model="stweet_message" placeholder="Schedule a Tweet" required></input>
-    <div id="date-time" style="display:inline-flex">
-      <input type="date" style="width: 60% margin-right: 5px;" min="{{defaultDate}}" ng-model="stweet_date"></input>
-      <input type="time" style="width: 90%" ng-model="stweet_time"></input>
+
+
+      <ul>
+        <h1>Followers</h1>
+        <input id="tweets_search" class="search" type="text" placeholder="search followers" ng-model="followersQuery">
+        <li ng-repeat-start="follower in followers | filter:followersQuery">
+          <p>{{follower.screen_name}}</p>
+          <p>{{follower.klout_score}}</p>
+          <p>{{follower.created_at | date:'M/d/yy h:mm a' }}</p>
+        </li>
+        <div ng-repeat-end ng-click="track(tweet)"></div>
+      </ul>
     </div>
-    <input type="submit" ng-click="sendStweet(stweet_message, stweet_time, stweet_date)" ng-disabled="disabled(stweet_message)"></input>
-    <h6>Characters: {{length(stweet_message)}}</h6>
-  </div>
 </body>
 </html>
+
+
+
+
+
+

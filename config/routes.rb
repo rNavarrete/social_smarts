@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :twitter_timeline, only: [:index, :create]
   resources :twitter_mentions, only: [:index]
   resources :twitter_usermentions, only: [:index]
+  resources :twitter_followers, only: [:index]
   resources :currentuser_klout, only: [:index]
   resources :twitter_location, only: [:index]
   resources :scheduled_tweet, only: [:create]
