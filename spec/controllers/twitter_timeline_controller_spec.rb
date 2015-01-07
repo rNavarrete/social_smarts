@@ -15,13 +15,13 @@ RSpec.describe TwitterTimelineController, type: :controller do
       end
 
       expect(response.status).to eq 200
-      expect(parsed_json_response_body.last).not_to be_empty
       expect(parsed_json_response_body.last['text']).to eq(last_tweet_text)
     end
   end
 
   describe 'create' do
-
+    it "posts a tweet" do
+    end
   end
   
   private
