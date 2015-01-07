@@ -19,9 +19,11 @@ class Tweet
   end
 
   def location_data
-      Faraday.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + tweet.user.location + '&key=' + 'AIzaSyBIjVwl0qhgGMl8PI4AQi6zdn-_SzLCJBE')
-    rescue TypeError
+    if tweet.user.location.instance_of?(Twitter::NullObject)
       nil
+    else
+      Faraday.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + tweet.user.location + '&key=' + 'AIzaSyBIjVwl0qhgGMl8PI4AQi6zdn-_SzLCJBE')
+    end
   end
 
   def parsed_location_data
@@ -29,23 +31,33 @@ class Tweet
   end
 
   def latitude_from_profile
-    coordinates = Rails.cache.read(tweet.user.location)
-
-    unless coordinates
-      coordinates = parsed_location_data["results"][0]["geometry"]["location"]
-      Rails.cache.write(tweet.user.location, coordinates)
+    unless tweet.user.location.instance_of?(Twitter::NullObject)
+      coordinates = Rails.cache.read(tweet.user.location)
+        if coordinates
+          coordinates["lat"] + offset(0.01, 0.05)
+        elsif parsed_location_data["results"] != []
+          coordinates = parsed_location_data["results"][0]["geometry"]["location"]
+          Rails.cache.write(tweet.user.location, coordinates)
+          coordinates["lat"] + offset(0.01, 0.05)
+      end
     end
-    coordinates["lat"]
+  end
+
+  def offset (min, max)
+    rand * (max-min) + min
   end
 
   def longitude_from_profile
-    coordinates = Rails.cache.read(tweet.user.location)
-
-    unless coordinates
-      coordinates = parsed_location_data["results"][0]["geometry"]["location"]
-      Rails.cache.write(tweet.user.location, coordinates)
+    unless tweet.user.location.instance_of?(Twitter::NullObject)
+      coordinates = Rails.cache.read(tweet.user.location)
+        if coordinates
+          coordinates["lng"]
+        elsif parsed_location_data["results"] != []
+          coordinates = parsed_location_data["results"][0]["geometry"]["location"]
+          Rails.cache.write(tweet.user.location, coordinates)
+          coordinates["lng"]
+      end
     end
-    coordinates["lng"]
   end
 
   def latitude_from_tweet

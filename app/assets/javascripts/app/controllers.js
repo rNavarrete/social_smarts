@@ -90,7 +90,7 @@ angular.module('socialsmartsApp.controllers', [])
         $scope.mentions = []
         for (var i = 0; i < $scope.usermentions.length; i++) {
           if ($scope.usermentions[i].tweet_data.tweet.place) {
-            var ret = {idKey: i, latitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][1] + Math.random(),
+            var ret = {idKey: i, latitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][1] + (Math.random() * (0.01 - 0.05) + 0.01),
               longitude: $scope.usermentions[i].tweet_data.tweet.place.bounding_box.coordinates[0][0][0], title: $scope.usermentions[i].text, show: false, author: $scope.usermentions[i].screen_name}
 
               ret.onClick = function() {
