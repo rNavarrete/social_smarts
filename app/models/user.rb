@@ -52,11 +52,11 @@ class User < ActiveRecord::Base
   end
 
   def update_auth_attrs(auth)
-    provider = auth.provider
-    uid = auth.uid
-    name = auth.info.name
-    oauth_token = auth.credentials.token
-    oauth_secret = auth.credentials.secret
+    self.provider = auth.provider
+    self.uid = auth.uid
+    self.name = auth.info.name
+    self.oauth_token = auth.credentials.token
+    self.oauth_secret = auth.credentials.secret
     save!
     self
   end
