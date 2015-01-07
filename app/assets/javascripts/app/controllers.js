@@ -28,6 +28,10 @@ angular.module('socialsmartsApp.controllers', [])
   $scope.stweet_time = new Date(1970, 0, 1, 14, 57, 0)
   $scope.stweet_date = today
 
+  $http.get('https://maps.googleapis.com/maps/api/geocode/json?key=' + 'AIzaSyBIjVwl0qhgGMl8PI4AQi6zdn-_SzLCJBE').success(function(data) {
+    $scope.map = { center: { latitude: 39.75015, longitude: -104.99987 }, zoom: 16 };
+  });
+
   $scope.disabled = function(tweet_message) {
     if (tweet_message == null || tweet_message.length > 140 || tweet_message.length < 1) {
       return true;
