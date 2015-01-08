@@ -6,4 +6,5 @@ json.array! @usermentions do |mention|
   json.tweet_data mention
   json.latitude_from_profile mention.latitude_from_profile
   json.longitude_from_profile mention.longitude_from_profile
+  json.image mention.user.profile_image_url.to_s
 end

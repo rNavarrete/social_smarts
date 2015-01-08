@@ -74,7 +74,7 @@
 }
 
 a {
-  color: #222;
+  color:rgb(12, 160, 202)
 }
 
 body > nav > ul > li.name > h1 > a{
@@ -137,6 +137,8 @@ ul {
   margin: 5px;
 }
 
-
-/*landing page styles*/
-
+.tweet_img{
+  box-shadow: 1px 1px 5px #525252;
+  float: right;
+  border-radius: 29px;
+}

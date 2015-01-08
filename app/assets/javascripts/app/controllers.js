@@ -61,7 +61,8 @@ angular.module('socialsmartsApp.controllers', [])
       screen_name: tweet.screen_name,
       klout_score: tweet.klout_score,
       status: "unresolved",
-      created_at: tweet.created_at
+      created_at: tweet.created_at,
+      image: tweet.image
     });
     tracked_tweet.$save(function() {
       sortTrackedTweets();
