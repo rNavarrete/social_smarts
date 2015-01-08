@@ -24,6 +24,7 @@
       <ul>
         <li ng-repeat-start="tweet in timeline | filter:query">
           <div class="tweet_background">
+            <img src={{tweet.image}} class="tweet_img">
             <div><strong id="tweet_headings">{{tweet.screen_name}}</strong></div>
             <div class="tweet_text" ng-bind-html="tweet.text"></div>
             <div class="tweet_text">Klout: {{tweet.klout_score}}</div>
@@ -44,6 +45,7 @@
       <ul>
         <li ng-repeat-start="mention in usermentions | orderBy:orderProp| filter:mentionsQuery">
           <div class="tweet_background">
+            <img src={{mention.image}} class="tweet_img">
             <div><strong id="tweet_headings">{{mention.screen_name}}</strong></div>
             <div class="tweet_text">Klout: {{mention.klout_score}}</div>
             <div  class="tweet_text" ng-bind-html="mention.text"></div>
@@ -72,6 +74,7 @@
       <ul>
         <li ng-repeat-start="tweet in tracked">
         <h3 class="heading">tracked</h3>
+          <img src={{tweet.image}} class="tweet_img">
           <div><strong id="tweet_headings">{{tweet.screen_name}}</strong></div>
           <div class="tweet_text">Klout: {{tweet.klout_score}}</div>
           <div class="tweet_text">{{tweet.text}}</div>
@@ -86,6 +89,7 @@
         <h4 class="heading">Unresolved Tweets</h4>
         <li ng-repeat-start="tweet in unresolved | filter:trackedQuery">
           <div class="tweet_background">
+            <img src={{tweet.image}} class="tweet_img">
             <div><strong id="tweet_headings">{{tweet.screen_name}}</strong></div>
             <div class="tweet_text">Klout: {{tweet.klout_score}}</div>
             <div class="tweet_text" ng-bind-html="tweet.text"></div>
@@ -100,6 +104,7 @@
         <h4 class="heading">Resolved Tweets</h4>
         <li ng-repeat-start="tweet in resolved | filter:trackedQuery">
             <div class="tweet_background">
+              <img src={{tweet.image}} class="tweet_img">
               <div><strong id="tweet_headings">{{tweet.screen_name}}</strong></div>
               <div class="tweet_text">Klout: {{tweet.klout_score}}</div>
               <div class="tweet_text" ng-bind-html="tweet.text"></div>

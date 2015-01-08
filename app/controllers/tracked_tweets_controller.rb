@@ -12,7 +12,8 @@ class TrackedTweetsController < ApplicationController
       screen_name: params[:screen_name],
       created_at: params[:created_at],
       klout_score: params[:klout_score],
-      status: params[:status]
+      status: params[:status],
+      image: params[:image]
     }
 
     tracked_tweet = current_user.tracked_tweets.new(tracked_tweet_params)
