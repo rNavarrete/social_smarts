@@ -12,7 +12,7 @@ RSpec.describe TwitterLocationController, type: :controller do
       end
 
       expect(response.status).to eq 200
-      expect(parsed_json_response_body[0]).to eq("Pittsburgh")
+      expect(parsed_json_response_body[0]).to eq("Pittsburgh, PA")
     end
   end
 
