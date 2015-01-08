@@ -35,13 +35,7 @@ class User < ActiveRecord::Base
 
   def fetch_followers
     Rails.cache.fetch("twitter_followers_#{uid}", expires_in: 24.hours) do
-      @followers = client.followers.map do |f|
-        f.class.module_eval { attr_accessor :klout_score}
-        f.klout_score = User::klout_score(f.id)
-        f
-      end
-      @followers.sort! { |a,b| b.klout_score <=> a.klout_score }
-      @followers[0..19]
+      @followers = client.followers
     end
   end
 
