@@ -28,11 +28,13 @@ class User < ActiveRecord::Base
   end
 
   def fetch_mentions
-    @mentions ||= client.mentions_timeline.map { |t| Tweet.new(t) }
+    Rails.cache.fetch("twitter_mentions_#{uid}", expires_in: 24.hours) do
+      @mentions ||= client.mentions_timeline.map { |t| Tweet.new(t) }
+    end
   end
 
   def fetch_followers
-    Rails.cache.fetch("twitter_followers#{uid}", expires_in: 24.hours) do
+    Rails.cache.fetch("twitter_followers_#{uid}", expires_in: 24.hours) do
       @followers = client.followers.map do |f|
         f.class.module_eval { attr_accessor :klout_score}
         f.klout_score = User::klout_score(f.id)
