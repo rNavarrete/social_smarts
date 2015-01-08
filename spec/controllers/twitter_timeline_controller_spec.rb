@@ -1,4 +1,4 @@
-RSpec.describe TwitterTimelineController, type: :controller do
+describe TwitterTimelineController, type: :controller do
   render_views
 
   let(:user) {create(:user)}
@@ -21,6 +21,9 @@ RSpec.describe TwitterTimelineController, type: :controller do
 
   describe 'create' do
     it "posts a tweet" do
+      VCR.use_cassette("create_tweet") do
+        post :create, tweet: 'Hello!', format: :json
+      end
     end
   end
 

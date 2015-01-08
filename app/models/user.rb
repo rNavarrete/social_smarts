@@ -57,10 +57,12 @@ class User < ActiveRecord::Base
   end
 
   def location
-    unless client.verify_credentials.location.instance_of? Twitter::NullObject
-      [client.verify_credentials.location]
-    else
-      [nil]
+    Rails.cache.fetch("twitter_location_#{uid}", expires_in: 24.hours) do
+      unless client.verify_credentials.location.instance_of? Twitter::NullObject
+        [client.verify_credentials.location]
+      else
+        [nil]
+      end
     end
   end
 

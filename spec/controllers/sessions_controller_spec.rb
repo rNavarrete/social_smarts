@@ -1,8 +1,8 @@
-RSpec.describe SessionsController, type: :controller do
+describe SessionsController, type: :controller do
   before do
     request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:twitter]
   end
-    
+
   describe "POST create" do
     it "sets the user_id in the session" do
       post :create

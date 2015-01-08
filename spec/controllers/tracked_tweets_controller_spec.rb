@@ -1,4 +1,4 @@
-RSpec.describe TrackedTweetsController do
+describe TrackedTweetsController do
   let(:user) { create(:user) }
 
   before do
@@ -27,7 +27,7 @@ RSpec.describe TrackedTweetsController do
 
   describe "PATCH update" do
     it "updates a tracked tweet and returns it in JSON" do
-      patch :update, format: :json, id: 2, status: "resolved" 
+      patch :update, format: :json, id: 2, status: "resolved"
 
       expect(response).to have_http_status(:no_content)
       expect(TrackedTweet.find(2).status).to eq "resolved"
