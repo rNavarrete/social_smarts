@@ -3,3 +3,5 @@
 [![Test Coverage](https://codeclimate.com/github/lukeaiken/social_smarts/badges/coverage.svg)](https://codeclimate.com/github/lukeaiken/social_smarts)
 
 [![Travis](https://travis-ci.org/lukeaiken/social_smarts.svg?branch=master)](https://travis-ci.org/lukeaiken/social_smarts)
+
+[Live Site](http://104.236.107.10/)
