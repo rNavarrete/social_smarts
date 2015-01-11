@@ -1,7 +1,7 @@
 angular.module('socialsmartsApp.controllers', [])
 .controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService) {
 
-  // sortTrackedTweets();
+  sortTrackedTweets();
 
   var fiveMin = 300000;
 
