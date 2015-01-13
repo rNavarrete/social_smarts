@@ -3,7 +3,7 @@ class TrackedTweetsController < ApplicationController
   before_filter :require_signin!
 
   def index
-    respond_with current_user.tracked_tweets
+    respond_with current_user.tracked_tweets.where(status: params[:status])
   end
 
   def create

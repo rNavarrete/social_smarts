@@ -1,9 +1,9 @@
 angular.module('socialsmartsApp.controllers', [])
 .controller('DashboardController', function($scope, $http, $interval, TrackedTweet, pollingService) {
-
-  sortTrackedTweets();
-
   var fiveMin = 300000;
+  
+  $scope.resolved = TrackedTweet.query({status: "resolved"});
+  $scope.unresolved = TrackedTweet.query({status: "unresolved"});
 
   pollingService.startPolling('timeline', '/twitter_timeline.json', fiveMin, function(resp) {
     $scope.timeline = resp.data;
@@ -198,14 +198,8 @@ angular.module('socialsmartsApp.controllers', [])
   };
 
   function sortTrackedTweets() {
-    TrackedTweet.query(function(resp) {
-      $scope.unresolved = resp.filter(function(v) {
-        return v.status === "unresolved";
-      });
-      $scope.resolved = resp.filter(function(v) {
-        return v.status === "resolved";
-      });
-    });
+    $scope.resolved = TrackedTweet.query({status: "resolved"});
+    $scope.unresolved = TrackedTweet.query({status: "unresolved"});
   }
 
 });
