@@ -10,11 +10,7 @@
     
       var fakeTrackedTweetService = {
         query: function() {
-          return {
-            success: function(callback) {
-              callback({ tweets: fakeTrackedTweets });
-            }
-          }
+          return fakeTrackedTweets;
         }
       };
 
