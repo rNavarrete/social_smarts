@@ -9,7 +9,7 @@ describe TrackedTweetsController do
 
   describe "GET index" do
     it "responds with a json array of tracked tweets" do
-      get :index, format: :json
+      get :index, format: :json, status: "unresolved"
 
       expect(response.status).to eq 200
       expect(parsed_json_response_body[0]["text"]).to eq "tweeting"
@@ -37,6 +37,7 @@ describe TrackedTweetsController do
   describe "DELETE destroy" do
     it "deletes a tracked tweet" do
       delete :destroy, id: 2, format: :json
+
       expect(response).to have_http_status(:no_content)
       expect{ TrackedTweet.find(2) }.to raise_error(ActiveRecord::RecordNotFound)
     end
