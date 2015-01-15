@@ -11,10 +11,6 @@ describe TwitterTimelineController, type: :controller do
   describe 'create' do
     it "posts a tweet" do
       VCR.use_cassette("create_scheduled_tweet") do
-        # expect{
-        #   post :create, tweet: 'Hello!', time: Time.now, date: Date.tomorrow, format: :json
-        # }.to change(ScheduledTweet, :count).by 1
-
         expect(response.code).to eq '200'
       end
     end
